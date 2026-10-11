@@ -1,0 +1,17 @@
+======================================================================
+RAG Assistant — Environment Verification
+======================================================================
+Python       : 3.12.3 (Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39)
+----------------------------------------------------------------------
+[OK   ] pandas                              v2.2.3
+[OK   ] numpy                               v1.26.4
+[OK   ] sentence_transformers               v3.2.1
+[OK   ] chromadb                            v0.5.20
+[OK   ] spacy                               v3.7.6
+[OK   ] bs4                                 v4.12.3
+[OK   ] ftfy                                v6.2.3
+[OK   ] langdetect                          vunknown
+[OK   ] CUDA/GPU                            CUDA available — GPU 0: NVIDIA GeForce MX570 A (torch 2.4.1+cu121)
+[OK   ] spaCy model (en_core_web_sm)        loaded
+----------------------------------------------------------------------
+Environment check PASSED (see WARN lines above for non-blocking notes).

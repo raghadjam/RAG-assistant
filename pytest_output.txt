@@ -1,0 +1,41 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.3.3, pluggy-1.6.0 -- /home/raghad/RAG-assistant/venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/raghad/RAG-assistant
+plugins: cov-5.0.0, anyio-4.15.1
+collecting ... collected 32 items
+
+tests/test_preprocessing.py::TestStripHtml::test_removes_simple_tags PASSED [  3%]
+tests/test_preprocessing.py::TestStripHtml::test_removes_script_and_style_content PASSED [  6%]
+tests/test_preprocessing.py::TestStripHtml::test_handles_malformed_markup_gracefully PASSED [  9%]
+tests/test_preprocessing.py::TestStripHtml::test_empty_string_returns_empty PASSED [ 12%]
+tests/test_preprocessing.py::TestStripHtml::test_plain_text_passthrough PASSED [ 15%]
+tests/test_preprocessing.py::TestStripHtml::test_preserves_separation_between_block_elements PASSED [ 18%]
+tests/test_preprocessing.py::TestNormalizeUnicode::test_fixes_mojibake PASSED [ 21%]
+tests/test_preprocessing.py::TestNormalizeUnicode::test_strips_control_characters PASSED [ 25%]
+tests/test_preprocessing.py::TestNormalizeUnicode::test_preserves_tabs_and_newlines PASSED [ 28%]
+tests/test_preprocessing.py::TestNormalizeUnicode::test_nfc_normalization_composes_characters PASSED [ 31%]
+tests/test_preprocessing.py::TestNormalizeUnicode::test_empty_string_returns_empty PASSED [ 34%]
+tests/test_preprocessing.py::TestNormalizeWhitespace::test_collapses_multiple_spaces PASSED [ 37%]
+tests/test_preprocessing.py::TestNormalizeWhitespace::test_collapses_tabs PASSED [ 40%]
+tests/test_preprocessing.py::TestNormalizeWhitespace::test_collapses_excess_newlines_but_keeps_paragraphs PASSED [ 43%]
+tests/test_preprocessing.py::TestNormalizeWhitespace::test_strips_leading_and_trailing_whitespace PASSED [ 46%]
+tests/test_preprocessing.py::TestNormalizeWhitespace::test_removes_trailing_spaces_before_newline PASSED [ 50%]
+tests/test_preprocessing.py::TestNormalizeWhitespace::test_empty_string_returns_empty PASSED [ 53%]
+tests/test_preprocessing.py::TestNormalizeWhitespace::test_preserves_single_newlines PASSED [ 56%]
+tests/test_preprocessing.py::TestDetectLanguage::test_detects_english PASSED [ 59%]
+tests/test_preprocessing.py::TestDetectLanguage::test_detects_non_english PASSED [ 62%]
+tests/test_preprocessing.py::TestDetectLanguage::test_returns_none_for_empty_text PASSED [ 65%]
+tests/test_preprocessing.py::TestDetectLanguage::test_returns_none_for_very_short_text PASSED [ 68%]
+tests/test_preprocessing.py::TestDetectLanguage::test_returns_none_for_whitespace_only PASSED [ 71%]
+tests/test_preprocessing.py::TestCleanText::test_full_pipeline_on_messy_html PASSED [ 75%]
+tests/test_preprocessing.py::TestCleanText::test_idempotent_on_already_clean_text PASSED [ 78%]
+tests/test_preprocessing.py::TestIsValidDocument::test_rejects_empty_text PASSED [ 81%]
+tests/test_preprocessing.py::TestIsValidDocument::test_rejects_too_short_text PASSED [ 84%]
+tests/test_preprocessing.py::TestIsValidDocument::test_accepts_valid_long_english_text PASSED [ 87%]
+tests/test_preprocessing.py::TestIsValidDocument::test_rejects_disallowed_language PASSED [ 90%]
+tests/test_preprocessing.py::TestIsValidDocument::test_returns_validation_result_dataclass PASSED [ 93%]
+tests/test_preprocessing.py::TestCleanDocument::test_returns_tuple_of_text_and_validation PASSED [ 96%]
+tests/test_preprocessing.py::TestCleanDocument::test_end_to_end_rejects_junk_input PASSED [100%]
+
+============================== 32 passed in 0.19s ==============================
