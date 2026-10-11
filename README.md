@@ -116,13 +116,3 @@ GPU note: `requirements.txt` pins `torch==2.4.1`. For CUDA 12.1, install it with
 
 `tests/test_preprocessing.py` contains 32 tests covering every cleaning function: normal input, empty input, malformed HTML, mojibake, control characters, NFC composition, whitespace edge cases, language detection (English, Spanish, too short), and the validation reasons. The tests use small made-up strings, so they run in under a second and need no data or network.
 
-## Known limitations
-
-- **LaTeX is not removed.** Abstracts contain markup such as `50\%`, `\emph{...}` and `$10 \times$`. The task asked for HTML, Unicode, whitespace and language cleaning, so this stays in the text. A LaTeX-stripping step is a good addition before embedding.
-- **The language filter rejected nothing here.** arXiv computer science abstracts are almost all English. The filter is verified by unit tests (a Spanish text is rejected), not by this dataset.
-- **The download script retries forever on network errors.** If arXiv is unreachable, `acquire_data.py` keeps retrying every 10 seconds instead of giving up. A retry limit should be added.
-- **Short, mixed-language text can fool `langdetect`.** Documents under 20 characters are treated as undetectable.
-
-## Next steps
-
-Chunking strategies, embedding with sentence-transformers, and indexing into ChromaDB.
