@@ -1,48 +1,4 @@
-# --- Environment / secrets ---
-.env
-.env.*
-!.env.example
 venv/
-env/
-.venv/
-*.conda/
-
-# --- Data (git-ignored per project spec) ---
-data/raw/*
-data/processed/*
-!data/raw/.gitkeep
-!data/processed/.gitkeep
-
-# --- Vector DB / model artifacts ---
-chroma_db/
-*.chroma/
-models_cache/
-.cache/
-
-# --- Python ---
+.env
 __pycache__/
-*.py[cod]
-*$py.class
-*.egg-info/
-.eggs/
-build/
-dist/
 .pytest_cache/
-.mypy_cache/
-.ruff_cache/
-htmlcov/
-.coverage
-coverage.xml
-
-# --- Jupyter ---
-.ipynb_checkpoints/
-
-# --- OS / editor ---
-.DS_Store
-.vscode/
-.idea/
-*.swp
-
-# --- Logs ---
-*.log
-logs/
