@@ -173,7 +173,7 @@ Small pieces are packed together until the next one would exceed the limit. Comp
 
 | Parameter | Value | Reason |
 |---|---|---|
-| `chunk_size` | 600 characters (about 120-150 tokens) | Well under the model's 256-token limit; roughly 3-4 chunks per abstract (exact count is printed by `build_index.py`) |
+| `chunk_size` | 600 characters (about 120-150 tokens) | Well under the model's 256-token limit; 4.4 chunks per abstract on average (measured) |
 | `chunk_overlap` | 150 characters | Repeats context across a boundary so an idea split by a cut is still findable |
 | Unit | characters, not tokens | Simple and needs no tokenizer; close enough for this model |
 
@@ -231,11 +231,55 @@ Outputs: `chroma_db/` (the vector database, git-ignored because of its size), `r
 
 ## Results
 
-> TODO: paste the table printed at the end of `python scripts/build_index.py --reset` here.
+Run on the full corpus, in WSL2 with an NVIDIA GeForce MX570 A (CUDA). Raw numbers are in `reports/`.
 
-> TODO: paste the contents of `reports/retrieval_benchmark.md` here.
+### Indexing
 
-> TODO: write 2-3 sentences on what you saw: which query types scored highest, whether the off-topic and nonsense queries scored clearly lower, and where the latency goes (embedding the query vs searching ChromaDB).
+| Metric | Value |
+|---|---|
+| Documents | 5,499 |
+| Chunks | 24,368 (4.43 per document) |
+| Chunk size / overlap | 600 / 150 characters |
+| Chunk length (mean, min, max) | 371.5, 3, 600 |
+| Embedding model | sentence-transformers/all-MiniLM-L6-v2 (384 dimensions) |
+| Device | cuda |
+| Chunking time | 0.32 s |
+| Embedding time | 51.7 s (471.4 chunks/s, 2.12 ms/chunk) |
+| Ingestion time | 31.1 s |
+| Chunks in ChromaDB | 24,368 |
+
+### Retrieval benchmark
+
+Index size: 24,368 chunks, top-5 search, 5 repeats per query (60 searches), after one warm-up query.
+
+Overall latency: mean 20.31 ms, p50 20.08 ms, p95 28.73 ms, max 31.82 ms.
+
+| Type | Query | Top-1 score | Embed (ms) | Search (ms) | Total (ms) |
+|---|---|---|---|---|---|
+| topic | transformer attention mechanism | 0.691 | 14.19 | 8.74 | 22.93 |
+| topic | retrieval augmented generation for question answering | 0.722 | 14.73 | 8.82 | 23.55 |
+| topic | reinforcement learning from human feedback | 0.622 | 14.43 | 10.15 | 24.58 |
+| topic | graph neural networks for node classification | 0.687 | 14.05 | 9.16 | 23.21 |
+| topic | diffusion models for image generation | 0.719 | 12.48 | 7.26 | 19.74 |
+| topic | federated learning with differential privacy | 0.781 | 9.14 | 7.09 | 16.23 |
+| question | How can large language models be made to hallucinate... | 0.737 | 10.08 | 6.72 | 16.8 |
+| question | What methods exist for evaluating the reasoning abil... | 0.68 | 8.79 | 7.23 | 16.02 |
+| long | We study how fine-tuning a pretrained language model... | 0.728 | 12.38 | 8.1 | 20.49 |
+| short | LLM | 0.644 | 9.77 | 7.97 | 17.75 |
+| off-topic | best pizza recipe with fresh basil | 0.19 | 11.77 | 9.58 | 21.35 |
+| nonsense | qzxv blorf wibble | 0.378 | 11.57 | 9.5 | 21.07 |
+
+The score is cosine similarity between the query and the best-matching chunk (1.0 would be identical meaning).
+
+### What the results show
+
+**Relevance.** Every on-topic query, whether a short phrase, a full question or a long paragraph, scored between 0.62 and 0.78. The off-topic pizza query scored 0.19 and the nonsense query 0.38. So on these 12 queries, a cutoff around 0.5 would cleanly separate "the corpus has something relevant" from "it does not". That is useful for Week 3, where the system must refuse questions it cannot answer from the sources. Two cautions: 12 queries is a small sample, and the nonsense string scored higher than the pizza query, so a score cutoff alone will not catch everything. The one-word query "LLM" scored lowest of the on-topic group (0.644), which suggests very short queries carry less signal.
+
+**Latency.** A full search took about 20 ms on average, and the slowest of the 60 searches took under 32 ms. Roughly 60% of that time goes to embedding the query (about 12 ms on average) and 40% to the ChromaDB lookup (about 8 ms). Query length and type made little difference to the total, and even the long paragraph query took 20 ms.
+
+**Effect of index size.** I also ran the benchmark on a 200-document trial index of 896 chunks. Mean latency there was 15.1 ms against 20.3 ms on the full index, and the ChromaDB lookup took 3.5 to 5.9 ms against 7 to 10 ms. Scores on the same queries were also lower on the small index (for example 0.487 against 0.691 for "transformer attention mechanism") because there were fewer documents to match. Embedding the query costs the same either way, so lookup time is the part that grows with the corpus.
+
+**Indexing cost.** Embedding all 24,368 chunks took under a minute on the GPU, and writing them to ChromaDB took about 31 seconds, so rebuilding the index is cheap.
 
 ## Testing
 
@@ -245,4 +289,7 @@ Outputs: `chroma_db/` (the vector database, git-ignored because of its size), `r
 
 - LaTeX markup from the abstracts (for example `50\%`, `$10 \times$`) is still in the text and therefore in the chunks and embeddings. A LaTeX-stripping step would be a good addition.
 - Chunk length is measured in characters, so the token count per chunk varies a little with the text.
+- A few chunks are very short. The smallest is 3 characters (mean length is 371.5), left over when a split ends on a tiny fragment. A minimum chunk size, or merging a tiny final piece into its neighbour, would remove them.
+- A similarity cutoff does not perfectly detect off-topic queries: the nonsense query scored 0.378, higher than the off-topic pizza query at 0.19.
+- ChromaDB 0.5.20 prints `Failed to send telemetry event` errors in the logs. They come from its anonymous telemetry client and do not affect results. Set `ANONYMIZED_TELEMETRY=False` to silence them.
 - Retrieval is pure semantic search; there is no keyword matching or reranking yet.
