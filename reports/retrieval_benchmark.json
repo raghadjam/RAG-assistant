@@ -1,0 +1,135 @@
+{
+  "k": 5,
+  "repeats": 5,
+  "collection_count": 24368,
+  "overall": {
+    "queries": 12,
+    "searches": 60,
+    "total_ms_mean": 20.31,
+    "total_ms_p50": 20.08,
+    "total_ms_p95": 28.73,
+    "total_ms_max": 31.82
+  },
+  "per_query": [
+    {
+      "type": "topic",
+      "query": "transformer attention mechanism",
+      "top1_score": 0.691,
+      "top1_title": "Query Expansion and Key Specialization in Transformer Attention Geometry",
+      "embed_ms_mean": 14.19,
+      "search_ms_mean": 8.74,
+      "total_ms_mean": 22.93,
+      "total_ms_p95": 27.05
+    },
+    {
+      "type": "topic",
+      "query": "retrieval augmented generation for question answering",
+      "top1_score": 0.722,
+      "top1_title": "One Size Does Not Fit All! Dynamic Retriever and Generator Selection for RAG",
+      "embed_ms_mean": 14.73,
+      "search_ms_mean": 8.82,
+      "total_ms_mean": 23.55,
+      "total_ms_p95": 30.23
+    },
+    {
+      "type": "topic",
+      "query": "reinforcement learning from human feedback",
+      "top1_score": 0.622,
+      "top1_title": "A Scoping Review and Experimental Study on Reinforcement Learning from Human Feedback for Human-Robot Collaboration",
+      "embed_ms_mean": 14.43,
+      "search_ms_mean": 10.15,
+      "total_ms_mean": 24.58,
+      "total_ms_p95": 29.28
+    },
+    {
+      "type": "topic",
+      "query": "graph neural networks for node classification",
+      "top1_score": 0.687,
+      "top1_title": "Not All Nodes Are Created Equal: Homophily-Aware Stratification for Stable GNN Evaluation",
+      "embed_ms_mean": 14.05,
+      "search_ms_mean": 9.16,
+      "total_ms_mean": 23.21,
+      "total_ms_p95": 28.17
+    },
+    {
+      "type": "topic",
+      "query": "diffusion models for image generation",
+      "top1_score": 0.719,
+      "top1_title": "Quantum Diffusion Models for Medical Image Analysis",
+      "embed_ms_mean": 12.48,
+      "search_ms_mean": 7.26,
+      "total_ms_mean": 19.74,
+      "total_ms_p95": 23.02
+    },
+    {
+      "type": "topic",
+      "query": "federated learning with differential privacy",
+      "top1_score": 0.781,
+      "top1_title": "Efficiently Distributed Federated Learning",
+      "embed_ms_mean": 9.14,
+      "search_ms_mean": 7.09,
+      "total_ms_mean": 16.23,
+      "total_ms_p95": 18.89
+    },
+    {
+      "type": "question",
+      "query": "How can large language models be made to hallucinate less?",
+      "top1_score": 0.737,
+      "top1_title": "Evaluating the Effects of Prompt Perturbation on Bias and Hallucination in Large Language Models",
+      "embed_ms_mean": 10.08,
+      "search_ms_mean": 6.72,
+      "total_ms_mean": 16.8,
+      "total_ms_p95": 20.75
+    },
+    {
+      "type": "question",
+      "query": "What methods exist for evaluating the reasoning ability of language models?",
+      "top1_score": 0.68,
+      "top1_title": "Collaborative Reasoning Distillation via Cross-Feedback and Coherent Curation",
+      "embed_ms_mean": 8.79,
+      "search_ms_mean": 7.23,
+      "total_ms_mean": 16.02,
+      "total_ms_p95": 20.24
+    },
+    {
+      "type": "long",
+      "query": "We study how fine-tuning a pretrained language model on a small labeled dataset affects its robustness to distribution shift and what regularization helps most",
+      "top1_score": 0.728,
+      "top1_title": "Detecting Pretraining Data in Large Language Models from a Free-Energy Perspective",
+      "embed_ms_mean": 12.38,
+      "search_ms_mean": 8.1,
+      "total_ms_mean": 20.49,
+      "total_ms_p95": 26.0
+    },
+    {
+      "type": "short",
+      "query": "LLM",
+      "top1_score": 0.644,
+      "top1_title": "Expanding LLM Reasoning",
+      "embed_ms_mean": 9.77,
+      "search_ms_mean": 7.97,
+      "total_ms_mean": 17.75,
+      "total_ms_p95": 20.77
+    },
+    {
+      "type": "off-topic",
+      "query": "best pizza recipe with fresh basil",
+      "top1_score": 0.19,
+      "top1_title": "Contrastive Learning for Aspect Representation towards Explainable Recommendation",
+      "embed_ms_mean": 11.77,
+      "search_ms_mean": 9.58,
+      "total_ms_mean": 21.35,
+      "total_ms_p95": 25.91
+    },
+    {
+      "type": "nonsense",
+      "query": "qzxv blorf wibble",
+      "top1_score": 0.378,
+      "top1_title": "Beyond Calibration: Do a Typed-Decision Model's Probabilities Obey the Probability Axioms?",
+      "embed_ms_mean": 11.57,
+      "search_ms_mean": 9.5,
+      "total_ms_mean": 21.07,
+      "total_ms_p95": 25.18
+    }
+  ]
+}

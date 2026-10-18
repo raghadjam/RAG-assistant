@@ -1,0 +1,28 @@
+{
+  "chunking": {
+    "num_documents": 5499,
+    "num_chunks": 24368,
+    "chunks_per_document": 4.43,
+    "chunk_size": 600,
+    "chunk_overlap": 150,
+    "chunk_chars_mean": 371.5,
+    "chunk_chars_min": 3,
+    "chunk_chars_max": 600,
+    "chunking_seconds": 0.322
+  },
+  "embedding": {
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "device": "cuda",
+    "batch_size": 64,
+    "dimension": 384,
+    "num_texts": 24368,
+    "total_seconds": 51.695,
+    "texts_per_second": 471.4,
+    "ms_per_text": 2.121
+  },
+  "ingestion": {
+    "chunks_written": 24368,
+    "collection_count": 24368,
+    "ingestion_seconds": 31.108
+  }
+}

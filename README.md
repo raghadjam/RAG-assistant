@@ -1,6 +1,18 @@
-# RAG Assistant: Week 1 (Environment, Data Ingestion & Preprocessing)
+# RAG Assistant
 
-This is the first stage of an end-to-end Retrieval-Augmented Generation (RAG) project. The full system will chunk and embed a document corpus into ChromaDB, retrieve context for user questions, generate grounded answers with an LLM, and serve everything through FastAPI.
+An end-to-end Retrieval-Augmented Generation (RAG) project over arXiv abstracts: clean the corpus, chunk and embed it into ChromaDB, retrieve context for questions, generate grounded answers with an LLM, and serve it all through FastAPI.
+
+| Week | Topic | Status |
+|---|---|---|
+| 1 | Environment, data ingestion, text cleaning | Done (see Week 1 below) |
+| 2 | Chunking, embeddings, ChromaDB, retrieval benchmark | Done (see Week 2 below) |
+| 3-6 | LLM integration, NLP analysis, FastAPI, evaluation | Upcoming |
+
+All work lives in this single repository. Week 2 builds directly on the clean corpus produced in Week 1.
+
+---
+
+# Week 1: Environment, Data Ingestion & Preprocessing
 
 This week covers the foundation:
 
@@ -54,20 +66,30 @@ RAG-assistant/
 ├── scripts/
 │   ├── verify_env.py       # environment, GPU and import checks
 │   ├── acquire_data.py     # downloads raw documents from the arXiv API
-│   └── build_corpus.py     # cleans and validates raw data into Parquet
+│   ├── build_corpus.py     # cleans and validates raw data into Parquet
+│   ├── build_index.py      # (Week 2) chunks, embeds and indexes the corpus
+│   └── benchmark_retrieval.py  # (Week 2) retrieval latency benchmark
 ├── src/
-│   └── preprocessing.py    # cleaning functions
+│   ├── preprocessing.py    # cleaning functions
+│   ├── chunking.py         # (Week 2) recursive text splitter
+│   ├── embeddings.py       # (Week 2) sentence-transformers wrapper with timing
+│   ├── vector_store.py     # (Week 2) ChromaDB wrapper
+│   └── search.py           # (Week 2) semantic search
 ├── tests/
-│   └── test_preprocessing.py
+│   ├── test_preprocessing.py
+│   ├── test_chunking.py        # (Week 2)
+│   └── test_vector_store.py    # (Week 2)
 ├── data/
 │   ├── raw/                # git-ignored
 │   └── processed/          # git-ignored
+├── chroma_db/              # (Week 2) vector database, git-ignored
+├── reports/                # (Week 2) timing and benchmark results
 ├── requirements.txt        # locked with pip freeze
 ├── verify_env_output.txt
 └── README.md
 ```
 
-`data/raw/*`, `data/processed/*`, `.env` and `venv/` are listed in `.gitignore`.
+`data/raw/*`, `data/processed/*`, `chroma_db/`, `.env` and `venv/` are listed in `.gitignore`.
 
 ## How to run
 
@@ -116,3 +138,111 @@ GPU note: `requirements.txt` pins `torch==2.4.1`. For CUDA 12.1, install it with
 
 `tests/test_preprocessing.py` contains 32 tests covering every cleaning function: normal input, empty input, malformed HTML, mojibake, control characters, NFC composition, whitespace edge cases, language detection (English, Spanish, too short), and the validation reasons. The tests use small made-up strings, so they run in under a second and need no data or network.
 
+---
+
+# Week 2: Chunking, Embeddings & Vector Database
+
+This week turns the 5,499 clean documents into a searchable ChromaDB index:
+
+1. A recursive chunking strategy, unit-tested
+2. Embeddings with sentence-transformers, with timing logged
+3. A persistent ChromaDB collection and a semantic search function
+4. A benchmark script that logs retrieval latency for different kinds of queries
+5. Handling for ChromaDB edge cases, each covered by a test
+
+## How it works
+
+```
+clean_corpus.parquet -> chunk_document -> Embedder -> VectorStore (ChromaDB) -> semantic_search
+                        (src/chunking)   (src/embeddings)  (src/vector_store)    (src/search)
+```
+
+## Chunking strategy
+
+**Why chunk at all.** Abstracts average about 1,550 characters. One vector for a whole abstract blurs several ideas together, while a smaller chunk gives a more focused match and a tighter passage to hand to the LLM in Week 3. The embedding model also truncates anything past 256 tokens, so smaller chunks make sure no text is silently dropped.
+
+**Method: recursive splitting** (`src/chunking.py`, written from scratch, no framework). The splitter tries the largest natural boundary first and only falls back to smaller ones for pieces that are still too long:
+
+1. paragraph break (`\n\n`)
+2. line break (`\n`)
+3. sentence end (`. `)
+4. space (between words)
+5. single character (last resort)
+
+Small pieces are packed together until the next one would exceed the limit. Compared with cutting every N characters, this avoids slicing sentences in half in most cases.
+
+| Parameter | Value | Reason |
+|---|---|---|
+| `chunk_size` | 600 characters (about 120-150 tokens) | Well under the model's 256-token limit; roughly 3-4 chunks per abstract (exact count is printed by `build_index.py`) |
+| `chunk_overlap` | 150 characters | Repeats context across a boundary so an idea split by a cut is still findable |
+| Unit | characters, not tokens | Simple and needs no tokenizer; close enough for this model |
+
+**Overlap is made of whole sentences.** The tail carried into the next chunk is only kept if it fits within 150 characters. When the last sentence before a cut is longer than that, the next chunk starts with no overlap. I chose to keep sentences intact over guaranteeing overlap.
+
+**Chunk records.** Each chunk gets the id `<doc_id>::<chunk_index>` plus metadata (`doc_id`, `chunk_index`, `title`, `source`, `categories`, `published`). Stable ids mean re-running the indexer overwrites chunks instead of duplicating them.
+
+**Known limitation.** The title is joined to the abstract in `text`, so it is only part of the first chunk's embedded text. Later chunks carry the title in their metadata, but it is not embedded with them.
+
+## Embeddings
+
+Model: `sentence-transformers/all-MiniLM-L6-v2` (384 dimensions). It is small and fast enough for a laptop GPU and works well for semantic search on English text. Vectors are L2-normalized and the collection uses cosine distance, so `score = 1 - distance` is cosine similarity. Embeddings are computed outside ChromaDB and passed in, so indexing and querying always use the same model. `Embedder.embed_timed` logs total time, chunks per second and milliseconds per chunk, after a warm-up call so one-time GPU start-up cost is not counted.
+
+## ChromaDB edge cases handled
+
+Every row has a test in `tests/test_vector_store.py` or `tests/test_chunking.py`.
+
+| Edge case | Handling |
+|---|---|
+| Empty or whitespace-only document | Produces zero chunks |
+| Text with no separators (one long string) | Falls back to character splitting; no chunk exceeds the limit |
+| Invalid `chunk_size` / `chunk_overlap` | Raises `ValueError` |
+| Empty-text chunk | Skipped with a warning, not embedded |
+| Duplicate chunk ids in one batch | Chroma rejects these, so the last one wins |
+| Re-running the indexer | `upsert` makes it idempotent; the count does not grow |
+| Empty metadata dict | Chroma 0.5.20 rejects `{}` (found by a failing test); stored as no metadata |
+| `None` or list values in metadata | `None` dropped, other non-primitive values converted to strings |
+| NaN or infinite embeddings | Rejected with `ValueError` |
+| Chunk and embedding counts differ | Rejected with `ValueError` |
+| Large collections | Written in batches within Chroma's maximum batch size |
+| `k` larger than the collection | Clipped to the number of stored chunks |
+| Query on an empty collection | Returns an empty list |
+| Empty query or `k <= 0` | Raises `ValueError` |
+| Metadata filter with no matches | Returns an empty list |
+| Invalid metadata filter | Re-raised as a clear `ValueError` |
+| Restart | Data persists on disk; verified by reopening the database in a test |
+| Collection names | Chroma requires 3-63 characters; its own error message is clear, so it is not wrapped |
+
+## How to run Week 2
+
+Requires the Week 1 setup and `data/processed/clean_corpus.parquet`. The first run downloads the embedding model (about 90 MB), so it needs internet access.
+
+```bash
+# 1. Build the index (chunk, embed, store). Use --limit 200 for a quick trial first
+python scripts/build_index.py --reset
+
+# 2. Benchmark retrieval latency
+python scripts/benchmark_retrieval.py
+
+# 3. Run all tests (Week 1 + Week 2)
+python -m pytest tests/ -v
+```
+
+Outputs: `chroma_db/` (the vector database, git-ignored because of its size), `reports/embedding_timing.json`, `reports/retrieval_benchmark.json` and `reports/retrieval_benchmark.md`. Logs go to `logs/`. Anyone can rebuild the database with step 1.
+
+## Results
+
+> TODO: paste the table printed at the end of `python scripts/build_index.py --reset` here.
+
+> TODO: paste the contents of `reports/retrieval_benchmark.md` here.
+
+> TODO: write 2-3 sentences on what you saw: which query types scored highest, whether the off-topic and nonsense queries scored clearly lower, and where the latency goes (embedding the query vs searching ChromaDB).
+
+## Testing
+
+77 tests pass (32 from Week 1, 45 new). The Week 2 tests cover the chunker, the vector store, search, persistence, and the index and benchmark pipelines. The vector-store tests use a small hashing embedder in place of the real model, so they run in about a second with no download. The real model is exercised by `build_index.py` and `benchmark_retrieval.py`.
+
+## Limitations
+
+- LaTeX markup from the abstracts (for example `50\%`, `$10 \times$`) is still in the text and therefore in the chunks and embeddings. A LaTeX-stripping step would be a good addition.
+- Chunk length is measured in characters, so the token count per chunk varies a little with the text.
+- Retrieval is pure semantic search; there is no keyword matching or reranking yet.
