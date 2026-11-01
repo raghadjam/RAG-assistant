@@ -4,6 +4,8 @@
     python scripts/build_index.py --limit 200      # quick trial run
     python scripts/build_index.py --reset          # wipe the collection first
 
+By default, indexes data/processed/enriched_corpus.parquet produced by
+scripts/enrich_corpus.py, including its NLP metadata in each chunk.
 Writes reports/embedding_timing.json with chunking, embedding and ingestion times.
 """
 
@@ -36,6 +38,16 @@ def build_index(df: pd.DataFrame, embedder, store, chunk_size: int, chunk_overla
             "categories": row.categories,
             "published": row.published,
         }
+        for field in ("topic_id", "topic_name", "sentiment_label", "sentiment_score"):
+            if field in df.columns:
+                value = getattr(row, field)
+                if pd.isna(value):
+                    value = None
+                elif field == "topic_id":
+                    value = int(value)
+                elif field == "sentiment_score":
+                    value = float(value)
+                meta[field] = value
         chunks.extend(chunk_document(row.doc_id, row.text, meta, chunk_size, chunk_overlap))
     chunk_seconds = time.perf_counter() - t0
 
@@ -91,7 +103,7 @@ def markdown_summary(report: dict) -> str:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Chunk, embed and index the clean corpus.")
-    parser.add_argument("--corpus", type=Path, default=Path("data/processed/clean_corpus.parquet"))
+    parser.add_argument("--corpus", type=Path, default=Path("data/processed/enriched_corpus.parquet"))
     parser.add_argument("--db-path", default="chroma_db")
     parser.add_argument("--collection", default="arxiv_chunks")
     parser.add_argument("--chunk-size", type=int, default=600)

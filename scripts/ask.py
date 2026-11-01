@@ -44,6 +44,9 @@ def main() -> int:
     parser.add_argument("--model", default="sentence-transformers/all-MiniLM-L6-v2")
     parser.add_argument("--k", type=int, help="chunks to retrieve")
     parser.add_argument("--min-score", type=float, help="off-topic cutoff")
+    parser.add_argument("--topic-id", type=int, help="restrict retrieval to an LDA topic id (see reports/nlp_metadata.json)")
+    parser.add_argument("--sentiment", choices=("negative", "neutral", "positive"),
+                        help="restrict retrieval to a VADER sentiment label")
     parser.add_argument("--json", action="store_true", help="print the full result as JSON")
     parser.add_argument("--verbose", action="store_true")
     args = parser.parse_args()
@@ -60,6 +63,7 @@ def main() -> int:
     from src.embeddings import Embedder
     from src.llm_client import LLMClient
     from src.rag import RAGPipeline
+    from src.search import build_metadata_filter
     from src.vector_store import VectorStore
 
     store = VectorStore(args.db_path, args.collection)
@@ -70,9 +74,10 @@ def main() -> int:
     embedder = Embedder(args.model)
     embedder.warm_up()
     pipeline = RAGPipeline(embedder, store, LLMClient(settings), settings)
+    where = build_metadata_filter(topic_id=args.topic_id, sentiment=args.sentiment)
 
     def run(question: str) -> None:
-        result = pipeline.ask(question)
+        result = pipeline.ask(question, where=where)
         print(json.dumps(result.to_dict(), indent=2, ensure_ascii=False) if args.json else "", end="")
         if not args.json:
             show(result)

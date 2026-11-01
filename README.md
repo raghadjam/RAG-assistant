@@ -7,7 +7,8 @@ An end-to-end Retrieval-Augmented Generation (RAG) project over arXiv abstracts:
 | 1 | Environment, data ingestion, text cleaning | Done (see Week 1 below) |
 | 2 | Chunking, embeddings, ChromaDB, retrieval benchmark | Done (see Week 2 below) |
 | 3 | LLM integration, prompt engineering, hallucination checks | Done (see Week 3 below) |
-| 4-6 | NLP analysis, FastAPI, evaluation | Upcoming |
+| 4 | Topic modeling, sentiment analysis, metadata-filtered retrieval | Done (see Week 4 below) |
+| 5-6 | FastAPI, extended evaluation | Upcoming |
 
 All work lives in this single repository. Week 2 builds directly on the clean corpus produced in Week 1.
 
@@ -70,6 +71,7 @@ RAG-assistant/
 │   ├── build_corpus.py     # cleans and validates raw data into Parquet
 │   ├── build_index.py      # (Week 2) chunks, embeds and indexes the corpus
 │   ├── benchmark_retrieval.py  # (Week 2) retrieval latency benchmark
+│   ├── enrich_corpus.py    # (Week 4) LDA topics, VADER sentiment and evaluation
 │   ├── check_llm.py        # (Week 3) test the API key and models, list free models
 │   ├── ask.py              # (Week 3) ask a question from the terminal
 │   ├── calibrate_threshold.py  # (Week 3) choose the off-topic cutoff from data
@@ -79,7 +81,8 @@ RAG-assistant/
 │   ├── chunking.py         # (Week 2) recursive text splitter
 │   ├── embeddings.py       # (Week 2) sentence-transformers wrapper with timing
 │   ├── vector_store.py     # (Week 2) ChromaDB wrapper
-│   ├── search.py           # (Week 2) semantic search
+│   ├── search.py           # (Week 2/4) semantic search and metadata filters
+│   ├── nlp_metadata.py     # (Week 4) topic modeling and sentiment metadata
 │   ├── config.py           # (Week 3) settings from .env
 │   ├── llm_client.py       # (Week 3) LLM API client with retries and fallback
 │   ├── prompts.py          # (Week 3) system prompt and context injection
@@ -87,6 +90,9 @@ RAG-assistant/
 │   └── rag.py              # (Week 3) the full question-to-answer pipeline
 ├── tests/
 │   ├── test_preprocessing.py
+│   ├── test_nlp_metadata.py    # (Week 4)
+│   ├── fixtures/
+│   │   └── sentiment_labels.csv # (Week 4) manually labeled sentiment examples
 │   ├── test_chunking.py        # (Week 2)
 │   ├── test_vector_store.py    # (Week 2)
 │   ├── test_llm_client.py      # (Week 3)
@@ -98,14 +104,14 @@ RAG-assistant/
 │   ├── raw/                # git-ignored
 │   └── processed/          # git-ignored
 ├── chroma_db/              # (Week 2) vector database, git-ignored
-├── reports/                # (Weeks 2-3) timing, benchmark and evaluation results
+├── reports/                # (Weeks 2-4) timing, benchmark and evaluation results
 ├── .env.example            # (Week 3) template for your API key (the real .env is git-ignored)
 ├── requirements.txt        # locked with pip freeze
 ├── verify_env_output.txt
 └── README.md
 ```
 
-`data/raw/*`, `data/processed/*`, `chroma_db/`, `.env` and `venv/` are listed in `.gitignore`.
+`data/raw/*`, `data/processed/*`, `chroma_db/`, `.env` and `venv/` are listed in `.gitignore`. The small human-labeled sentiment fixture is kept in `tests/fixtures/` so it remains versioned.
 
 ## How to run
 
@@ -233,17 +239,20 @@ Every row has a test in `tests/test_vector_store.py` or `tests/test_chunking.py`
 Requires the Week 1 setup and `data/processed/clean_corpus.parquet`. The first run downloads the embedding model (about 90 MB), so it needs internet access.
 
 ```bash
-# 1. Build the index (chunk, embed, store). Use --limit 200 for a quick trial first
+# 1. Enrich the clean corpus with topics and sentiment
+python scripts/enrich_corpus.py
+
+# 2. Build the index from the enriched corpus (use --limit 200 on enrichment for a quick trial)
 python scripts/build_index.py --reset
 
-# 2. Benchmark retrieval latency
+# 3. Benchmark retrieval latency
 python scripts/benchmark_retrieval.py
 
-# 3. Run all tests (Week 1 + Week 2)
+# 4. Run all tests (Weeks 1-4)
 python -m pytest tests/ -v
 ```
 
-Outputs: `chroma_db/` (the vector database, git-ignored because of its size), `reports/embedding_timing.json`, `reports/retrieval_benchmark.json` and `reports/retrieval_benchmark.md`. Logs go to `logs/`. Anyone can rebuild the database with step 1.
+Outputs: `data/processed/enriched_corpus.parquet`, `reports/nlp_metadata.json`, `chroma_db/` (the vector database, git-ignored because of its size), `reports/embedding_timing.json`, `reports/retrieval_benchmark.json` and `reports/retrieval_benchmark.md`. Logs go to `logs/`. Anyone can rebuild the database with these steps.
 
 ## Results
 
@@ -524,3 +533,60 @@ The threshold calibration separated all 20 on-topic queries from all 20 off-topi
 - Free models vary: they come and go, are rate-limited, and the same question can give different answers on different runs. The model that answers is recorded in every result.
 - Each question is answered independently, with no conversation memory, and results are not re-ranked.
 - Prompt injection is reduced by the prompt rules, the gate and the checks, not eliminated.
+
+---
+
+# Week 4: Topic Modeling, Sentiment & Filtered Retrieval
+
+The corpus enrichment stage adds document-level NLP metadata before chunking and indexing:
+
+1. **Topics:** scikit-learn Latent Dirichlet Allocation (LDA) discovers eight themes by default from the corpus. A count-vectorizer retains technical and hyphenated terms, removes English stop words, and ignores terms appearing in fewer than two documents. Each document receives an integer `topic_id` and a short `topic_name` made from its top terms.
+2. **Sentiment:** VADER assigns a polarity label (`negative`, `neutral`, `positive`) and its compound score to each document. Thresholds follow VADER conventions: compound >= 0.05 is positive, <= -0.05 is negative, otherwise neutral. This is general-purpose polarity, not an opinion or quality judgment about a paper.
+3. **Manual evaluation:** `tests/fixtures/sentiment_labels.csv` contains 18 small, manually labeled examples (six per class), including scientific text and technical vocabulary. The enrichment report evaluates these labels and records accuracy, confusion matrix, and per-class precision/recall. The observed accuracy is **17/18 (94.4%)**: all six positive and neutral examples were classified correctly, while one negative example was predicted neutral. This small, deliberately balanced fixture is a sanity check, not a representative estimate of performance on all abstracts.
+4. **Topic review:** the report includes each topic's top terms and up to three representative documents. Inspect these before relying on the generated names as semantic categories; LDA discovers word co-occurrence and has no ground-truth topic accuracy in this project. The committed checkout does not include the ignored corpus, so full-corpus topic labels still need to be reviewed after running enrichment.
+
+Short documents (under 80 characters by default) and eligible documents with no retained vocabulary are assigned `topic_id=-1` and `topic_name=unassigned`. If fewer than two documents have usable vocabulary, LDA is skipped and the report gives the reason rather than fabricating topics. Sentiment is still calculated for short documents. If jargon is missing from topic terms, inspect the examples and rerun with a lower `--min-df`; the vectorizer deliberately retains tokens such as `LoRA`, `top-k`, `encoder-decoder`, and `k-NN`.
+
+## Enrich, inspect, and index
+
+After building the Week 1 clean corpus, run:
+
+```bash
+# Create enriched_corpus.parquet and the review/evaluation report
+python scripts/enrich_corpus.py
+
+# Smaller trial run; choose at least two documents for LDA
+python scripts/enrich_corpus.py --limit 200 --topics 8
+
+# Inspect topic terms, representative texts, and sentiment_evaluation in this report
+# reports/nlp_metadata.json
+
+# Index the enriched corpus (the default input for build_index.py)
+python scripts/build_index.py --reset
+```
+
+`scripts/enrich_corpus.py` accepts `--corpus`, `--output`, `--report`, `--labels`, `--topics`, `--min-topic-chars`, `--min-df`, and `--limit`. It writes scalar metadata that Chroma accepts: `topic_id` (integer), `topic_name` (string), `sentiment_label` (string), and `sentiment_score` (float). These document-level values are copied to every chunk, so all passages from one document share the same topic and sentiment. To index the original corpus without NLP enrichment, explicitly pass `--corpus data/processed/clean_corpus.parquet`; those records will not have the new filters.
+
+## Filtered retrieval
+
+The existing semantic retriever accepts Chroma metadata filters, and `RAGPipeline` now passes optional filters through to retrieval. The terminal interface can restrict retrieved context by either field or both:
+
+```bash
+python scripts/ask.py "How are transformer models evaluated?" --topic-id 2
+python scripts/ask.py "How are transformer models evaluated?" --sentiment neutral
+python scripts/ask.py "How are transformer models evaluated?" --topic-id 2 --sentiment neutral
+```
+
+Topic IDs are specific to the fitted corpus and LDA configuration; check `reports/nlp_metadata.json` after each enrichment run. Filtering narrows the retrieval candidates before the existing relevance gate, so a filter with no relevant match returns no context rather than silently dropping the filter.
+
+## Effectiveness and limitations
+
+Sentiment metrics are produced by `enrich_corpus.py` from the checked-in manual labels, making the result reproducible with the selected software versions. The 94.4% fixture accuracy should not be read as corpus-wide accuracy: the set is small, balanced, and uses clear examples. VADER is lexicon-based; it can misread domain-specific evaluative words, negation, or neutral technical prose, as demonstrated by the negative example classified as neutral. Extend the manually labeled set with independently annotated arXiv abstracts before claiming broad accuracy.
+
+LDA topics are exploratory, vary with the corpus and hyperparameters, and may split one theme or merge several. There is no labeled topic benchmark here; the review terms and sample abstracts are intentionally surfaced for human validation instead of claiming an automated accuracy score. For more detailed, embedding-based topic representations, BERTopic is included in `requirements.txt` and documented at [BERTopic](https://maartengr.github.io/BERTopic/), but this implementation uses LDA to keep topic modeling deterministic and manageable on CPU.
+
+The focused unit tests cover LDA assignments, the short-document fallback, sentiment scoring and evaluation, and single/combined Chroma filters. They run without corpus data, a GPU, an embedding-model download, or an API key:
+
+```bash
+python -m pytest tests/test_nlp_metadata.py tests/test_vector_store.py tests/test_rag.py -v
+```

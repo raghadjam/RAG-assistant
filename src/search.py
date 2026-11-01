@@ -4,6 +4,22 @@ from __future__ import annotations
 
 import time
 
+from src.nlp_metadata import SENTIMENT_LABELS
+
+
+def build_metadata_filter(topic_id: int | None = None, sentiment: str | None = None) -> dict | None:
+    """Build a Chroma metadata filter from the supported NLP fields."""
+    clauses = []
+    if topic_id is not None:
+        clauses.append({"topic_id": topic_id})
+    if sentiment is not None:
+        if sentiment not in SENTIMENT_LABELS:
+            raise ValueError(f"sentiment must be one of {SENTIMENT_LABELS}")
+        clauses.append({"sentiment_label": sentiment})
+    if len(clauses) > 1:
+        return {"$and": clauses}
+    return clauses[0] if clauses else None
+
 
 def semantic_search(query: str, embedder, store, k: int = 5, where: dict | None = None) -> dict:
     """Return {"results": [...], "timing": {...}} for a text query.

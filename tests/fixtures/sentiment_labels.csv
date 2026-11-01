@@ -1,0 +1,19 @@
+text,label
+"The proposed method achieves excellent results and substantially improves retrieval accuracy.",positive
+"This approach is effective, reliable, and provides a clear improvement over the baseline.",positive
+"The model demonstrates strong performance with impressive gains across the evaluation.",positive
+"We are pleased that the robust system successfully reduces errors in difficult cases.",positive
+"The new technique is valuable and significantly enhances the quality of generated answers.",positive
+"This is a good and promising solution that works well in practice.",positive
+"The method performs poorly and fails to improve the baseline.",negative
+"The model is unreliable, ineffective, and produces disappointing results.",negative
+"This approach causes severe degradation and substantially worsens retrieval quality.",negative
+"The system is frustrating to use and frequently returns incorrect answers.",negative
+"The experiment reveals a serious failure with harmful effects on performance.",negative
+"This is a bad solution that does not work and offers no useful improvement.",negative
+"We evaluate a transformer encoder using a fixed training set and report the results.",neutral
+"The dataset contains scientific abstracts with titles, categories, and publication dates.",neutral
+"Experiments compare batch sizes, learning rates, and GPU memory consumption.",neutral
+"The method uses top-k retrieval, cosine similarity, and a vector database.",neutral
+"We measure BLEU, perplexity, and latency for the fine-tuned language model.",neutral
+"The paper describes LoRA adapters, tokenization, and an encoder-decoder architecture.",neutral

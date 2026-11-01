@@ -66,6 +66,9 @@ def _source(n: int, hit: dict) -> dict:
         "doc_id": meta.get("doc_id"),
         "title": meta.get("title"),
         "chunk_index": meta.get("chunk_index"),
+        "topic_id": meta.get("topic_id"),
+        "topic_name": meta.get("topic_name"),
+        "sentiment_label": meta.get("sentiment_label"),
         "score": round(hit["score"], 3),
     }
 
@@ -89,7 +92,7 @@ class RAGPipeline:
         self.llm = llm
         self.settings = settings
 
-    def ask(self, question: str) -> RAGResult:
+    def ask(self, question: str, where: dict | None = None) -> RAGResult:
         started = time.perf_counter()
         question = (question or "").strip()
 
@@ -97,7 +100,7 @@ class RAGPipeline:
             result = RAGResult(question[:80], "invalid_query", INVALID_MESSAGE)
             return self._finish(result, started)
 
-        search = semantic_search(question, self.embedder, self.store, k=self.settings.top_k)
+        search = semantic_search(question, self.embedder, self.store, k=self.settings.top_k, where=where)
         hits = search["results"]
         timing = {
             "embed_ms": search["timing"]["embed_ms"],
