@@ -7,6 +7,12 @@ import pandas as pd
 TOPIC_MIN_CHARS = 80
 TOPIC_TOKEN_PATTERN = r"(?u)\b[a-zA-Z][a-zA-Z0-9_+-]{2,}\b"
 SENTIMENT_LABELS = ("negative", "neutral", "positive")
+TOPIC_DOMAIN_STOP_WORDS = frozenset({
+    "approach", "approaches", "based", "demonstrate", "existing", "framework",
+    "frameworks", "learning", "method", "methods", "model", "models", "new",
+    "paper", "papers", "performance", "proposed", "results", "show", "study",
+    "system", "systems", "task", "tasks", "use", "used", "using", "work",
+})
 
 
 def sentiment_label(compound: float) -> str:
@@ -104,6 +110,7 @@ def enrich_corpus(
         "requested_topics": n_topics,
         "min_topic_chars": min_topic_chars,
         "min_document_frequency": min_df,
+        "domain_stop_words": sorted(TOPIC_DOMAIN_STOP_WORDS),
         "documents_total": len(texts),
         "documents_eligible": len(eligible),
         "documents_unassigned": len(texts),
@@ -115,10 +122,10 @@ def enrich_corpus(
         return enriched, _with_distributions(enriched, topic_report)
 
     from sklearn.decomposition import LatentDirichletAllocation
-    from sklearn.feature_extraction.text import CountVectorizer
+    from sklearn.feature_extraction.text import CountVectorizer, ENGLISH_STOP_WORDS
 
     vectorizer = CountVectorizer(
-        stop_words="english",
+        stop_words=sorted(ENGLISH_STOP_WORDS | TOPIC_DOMAIN_STOP_WORDS),
         token_pattern=TOPIC_TOKEN_PATTERN,
         min_df=min_df,
         max_df=0.95,

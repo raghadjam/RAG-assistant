@@ -1,0 +1,376 @@
+{
+  "method": "Latent Dirichlet Allocation (scikit-learn)",
+  "requested_topics": 8,
+  "min_topic_chars": 80,
+  "min_document_frequency": 2,
+  "domain_stop_words": [
+    "approach",
+    "approaches",
+    "based",
+    "demonstrate",
+    "existing",
+    "framework",
+    "frameworks",
+    "learning",
+    "method",
+    "methods",
+    "model",
+    "models",
+    "new",
+    "paper",
+    "papers",
+    "performance",
+    "proposed",
+    "results",
+    "show",
+    "study",
+    "system",
+    "systems",
+    "task",
+    "tasks",
+    "use",
+    "used",
+    "using",
+    "work"
+  ],
+  "documents_total": 5499,
+  "documents_eligible": 5499,
+  "documents_unassigned": 0,
+  "topics": [
+    {
+      "topic_id": 0,
+      "topic_name": "reasoning, evidence, multimodal, graph",
+      "top_terms": [
+        "reasoning",
+        "evidence",
+        "multimodal",
+        "graph",
+        "language",
+        "knowledge",
+        "evaluation",
+        "human"
+      ],
+      "document_count": 776,
+      "review_examples": [
+        {
+          "doc_id": "http://arxiv.org/abs/2610.05919v1",
+          "title": "Non-invasive Seizure Detection Using Wearable Wrist-worn Accelerometry and Deep Learning",
+          "text": "Non-invasive Seizure Detection Using Wearable Wrist-worn Accelerometry and Deep Learning\n\nSeizure monitoring and detection are crucial for reducing the morbidity and mortality associated with seizures. Current epilepsy care, often involving expensive video-electroencephalography (VEEG) monitoring, requires specialized expertise and is limited to in-hospital settings, and intrusive in nature. Seizu"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2610.15351v1",
+          "title": "Siam-ALS: An Explainable Siamese Deep Learning Framework for Early ALS Detection Using EEG and Eye-Tracking Signals",
+          "text": "Siam-ALS: An Explainable Siamese Deep Learning Framework for Early ALS Detection Using EEG and Eye-Tracking Signals\n\nAmyotrophic lateral sclerosis (ALS) diagnosis remains challenging due to heterogeneous symptoms and reliance on clinical assessment, underscoring the need for objective, data-driven approaches that leverage patient-generated physiological signals. We propose Siam-ALS, an explainable"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2610.18635v1",
+          "title": "DTScribe: Generating Models for Digital Twin Reporting using Local Large Language Models",
+          "text": "DTScribe: Generating Models for Digital Twin Reporting using Local Large Language Models\n\nThe development of a digital twin brings together many stakeholders and technical components. We have previously investigated the reporting of the conceptual architecture for these digital twins as an artifact for discussion. However, we find that the activity of modeling the digital twin for visualization an"
+        }
+      ]
+    },
+    {
+      "topic_id": 1,
+      "topic_name": "memory, action, policy, decision",
+      "top_terms": [
+        "memory",
+        "action",
+        "policy",
+        "decision",
+        "robot",
+        "actions",
+        "world",
+        "context"
+      ],
+      "document_count": 453,
+      "review_examples": [
+        {
+          "doc_id": "http://arxiv.org/abs/2610.17748v1",
+          "title": "I3L: Iterative Interactive Imitation Learning for Whole-Body Mobile Manipulation",
+          "text": "I3L: Iterative Interactive Imitation Learning for Whole-Body Mobile Manipulation\n\nPolicies trained offline from teleoperated demonstrations can degrade outside their training distribution. This gap is particularly acute in long-horizon whole-body mobile manipulation, where long horizons amplify compounding errors and coordinated arm, torso, and base motion makes exhaustive demonstration coverage i"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2610.25603v1",
+          "title": "When Better Opportunities Backfire: Service Worker Responses to Parallel AI Deployment in Customer Acquisition",
+          "text": "When Better Opportunities Backfire: Service Worker Responses to Parallel AI Deployment in Customer Acquisition\n\nAs AI voice agents get deployed in high-volume contact centers, firms can route low-intent leads to AI and allocate high-intent leads to human workers. Drawing on sequential search theory, we posit that AI-induced task allocation reshapes work, enriching opportunities facing human worker"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2610.07946v1",
+          "title": "Adapting Vision-Language-Action Models to Unknown Visual Disruptions During Execution",
+          "text": "Adapting Vision-Language-Action Models to Unknown Visual Disruptions During Execution\n\nVisual disruptions can arise while a robot is executing a task, leaving a vision-language-action (VLA) policy to respond without knowing the disruption type or timing. We introduce Self-supervised Adaptation from Leftover Trajectories (SALT), which uses the leftover trajectory, the unexecuted part of the previou"
+        }
+      ]
+    },
+    {
+      "topic_id": 2,
+      "topic_name": "agents, agent, llm, execution",
+      "top_terms": [
+        "agents",
+        "agent",
+        "llm",
+        "execution",
+        "code",
+        "evidence",
+        "evaluation",
+        "benchmark"
+      ],
+      "document_count": 1378,
+      "review_examples": [
+        {
+          "doc_id": "http://arxiv.org/abs/2610.36114v1",
+          "title": "Context Is a Pipeline, Not a Window: Information Attrition in LLM Agent Harnesses",
+          "text": "Context Is a Pipeline, Not a Window: Information Attrition in LLM Agent Harnesses\n\nLLM agents are judged by two numbers: the size of the context window, and how often the final answer is correct. Both numbers miss a third thing: how much of a tool's output is lost before the model ever sees it. We measured this loss in a real tool-using agent. The agent finds the cause of injected faults by readin"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2610.30495v1",
+          "title": "From Prose to Properties: Testing Research Claims with ARATest for Agent-Native Science",
+          "text": "From Prose to Properties: Testing Research Claims with ARATest for Agent-Native Science\n\nAI agents now run experiments and report findings, so research produces claims faster than researchers can check them. Each empirical claim implies a property that must hold over its cases, but it states that property only in prose. Without an explicit property, no test can decide which evidence would falsify "
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2610.07257v2",
+          "title": "MemMux: Runtime Verification and Honest Resource Attribution for Fleets of Parallel Coding Agents",
+          "text": "MemMux: Runtime Verification and Honest Resource Attribution for Fleets of Parallel Coding Agents\n\nDevelopers increasingly run a fleet of coding agents side by side on one workstation. Terminal multiplexers like tmux and a new generation of agent managers were built to arrange windows, not to govern memory. When ten agents each spawn language servers, test runners, and browsers, no standard tool c"
+        }
+      ]
+    },
+    {
+      "topic_id": 3,
+      "topic_name": "training, data, accuracy, neural",
+      "top_terms": [
+        "training",
+        "data",
+        "accuracy",
+        "neural",
+        "error",
+        "fixed",
+        "attention",
+        "trained"
+      ],
+      "document_count": 864,
+      "review_examples": [
+        {
+          "doc_id": "http://arxiv.org/abs/2610.34945v1",
+          "title": "Relational Composition as Parallel Transport: What Per-Entity Frames Force in Attention",
+          "text": "Relational Composition as Parallel Transport: What Per-Entity Frames Force in Attention\n\nA dot product means something only when both vectors share a coordinate system. Content words have one; a fresh entity does not: rotating its coordinates alone changes nothing. We take this per-entity frame freedom as a symmetry and ask what it forces in attention. For orthogonal transports, invariant scores d"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2610.40055v1",
+          "title": "One Vector or Many? Clustered Optimal-Transport Steering under Quantization",
+          "text": "One Vector or Many? Clustered Optimal-Transport Steering under Quantization\n\nActivation steering changes what a language model generates by editing its hidden states at inference time. Its most common form adds one vector, the difference of class means (DiM), to every hidden state. CHaRS (concept heterogeneity-aware representation steering) uses optimal transport instead: an entropic plan pairs th"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2610.07497v1",
+          "title": "Does Muon Need Fine-Grained Spectral Shaping?",
+          "text": "Does Muon Need Fine-Grained Spectral Shaping?\n\nMuon combines current and past gradients into matrix momentum. For $M=UΣV^\\top$, the idealized polar update $Q=UV^\\top$ gives every singular direction the same weight. We refer to this as the flat profile. Several recent optimizers replace this flat profile with fine-grained spectral maps that give each direction its own gain. We ask how much of this "
+        }
+      ]
+    },
+    {
+      "topic_id": 4,
+      "topic_name": "generation, diffusion, visual, image",
+      "top_terms": [
+        "generation",
+        "diffusion",
+        "visual",
+        "image",
+        "inference",
+        "tokens",
+        "token",
+        "propose"
+      ],
+      "document_count": 519,
+      "review_examples": [
+        {
+          "doc_id": "http://arxiv.org/abs/2610.07037v1",
+          "title": "Inference-Time Projection for Physically Valid Biomolecular Diffusion Models",
+          "text": "Inference-Time Projection for Physically Valid Biomolecular Diffusion Models\n\nAlphaFold 3-style cofolding models predict biomolecular complexes with high structural accuracy, yet a large fraction of their outputs are physically invalid: chains overlap at interfaces, ligand bond lengths and angles are distorted, rings are non-planar, and stereocentres are inverted. Current approaches either steer t"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2610.28441v1",
+          "title": "Stratified Sparse Attention: Reducing the Sparse-to-Dense Gap at Extreme Sparsity",
+          "text": "Stratified Sparse Attention: Reducing the Sparse-to-Dense Gap at Extreme Sparsity\n\nLarge Language Model inference over long contexts is increasingly bottlenecked by the cost of attending to a growing Key-Value (KV) cache. Sparse attention reduces this cost by accessing only a fraction of the cache, but existing methods face a trade-off between deterministic retrieval, which captures high-scoring t"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2610.28543v1",
+          "title": "Binary Discrete Diffusion: Candidate-Set Diffusion for Logic and Planning Tasks",
+          "text": "Binary Discrete Diffusion: Candidate-Set Diffusion for Logic and Planning Tasks\n\nDiscrete diffusion models iteratively denoise a noisy sequence of categorical data such as text, enabling any-order generation with self-correction and in-filling capabilities. This makes them promising candidates for reasoning, planning, and constrained-generation tasks like coding and math. Yet masked and uniform di"
+        }
+      ]
+    },
+    {
+      "topic_id": 5,
+      "topic_name": "reasoning, training, reward, reinforcement",
+      "top_terms": [
+        "reasoning",
+        "training",
+        "reward",
+        "reinforcement",
+        "policy",
+        "optimization",
+        "language",
+        "retrieval"
+      ],
+      "document_count": 600,
+      "review_examples": [
+        {
+          "doc_id": "http://arxiv.org/abs/2610.37706v1",
+          "title": "Search-Guided Reasoning Trace Curation for Verilog Generation",
+          "text": "Search-Guided Reasoning Trace Curation for Verilog Generation\n\nRecent advances in large language models (LLMs) have improved Verilog generation. However, most training pipelines distill natural-language reasoning traces whose intermediate design decisions are weakly structured and are primarily selected according to the correctness of the final generated RTL. We present MCTS-SFT, a verifier-guided"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2610.28770v1",
+          "title": "ReAPO: Retry-Aware Policy Optimization for Efficient Exploration in LLM Reasoning",
+          "text": "ReAPO: Retry-Aware Policy Optimization for Efficient Exploration in LLM Reasoning\n\nRLVR improves language-model reasoning, but commonly relies on independent stochastic rollouts for exploration, which can repeatedly sample similar failed strategies. Prior work has seen success with approaches that guide exploration by introducing dependence into the sampling process by including incorrect solution"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2610.16593v1",
+          "title": "Double-Rollout Reinforcement Learning with Sampling-based Reward Estimation",
+          "text": "Double-Rollout Reinforcement Learning with Sampling-based Reward Estimation\n\nReinforcement learning with verifiable rewards (RLVR) implemented with Group Relative Policy Optimization (GRPO) has driven substantial progress in training reasoning language models. However, verifiable outcome rewards provide an imperfect measure of reasoning quality: a correct final answer may not be supported by the r"
+        }
+      ]
+    },
+    {
+      "topic_id": 6,
+      "topic_name": "safety, language, attack, evaluation",
+      "top_terms": [
+        "safety",
+        "language",
+        "attack",
+        "evaluation",
+        "risk",
+        "attacks",
+        "prompt",
+        "llms"
+      ],
+      "document_count": 478,
+      "review_examples": [
+        {
+          "doc_id": "http://arxiv.org/abs/2610.38239v1",
+          "title": "The Indian Financial Automated Advice Bias (IFAAB) Dataset : Auditing Socioeconomic and Demographic Disparities in LLM-Generated Financial Advice in India",
+          "text": "The Indian Financial Automated Advice Bias (IFAAB) Dataset : Auditing Socioeconomic and Demographic Disparities in LLM-Generated Financial Advice in India\n\nLarge language models are increasingly used for financial guidance, yet little is known about whether their advice changes across social identities in Global South contexts. We introduce the Indian Financial Automated Advice Bias (IFAAB) benchm"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2610.14360v1",
+          "title": "When Pleasing the User Compromises Care: AI Sycophancy in Caregiver-Mediated Healthcare",
+          "text": "When Pleasing the User Compromises Care: AI Sycophancy in Caregiver-Mediated Healthcare\n\nLarge language model (LLM) alignment often assumes that the user interacting with a model is also the primary beneficiary of its behavior. Yet in many consequential settings, one person directs the system while another bears the consequences. We study this problem in caregiver-mediated healthcare, where parent"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2610.24807v1",
+          "title": "Medical Fine-Tuning Reshapes, Not Reduces, Patient-Facing AI Risk: A Rubric-Based, LLM-Judge Evaluation Framework",
+          "text": "Medical Fine-Tuning Reshapes, Not Reduces, Patient-Facing AI Risk: A Rubric-Based, LLM-Judge Evaluation Framework\n\nPatient-facing medical question answering with large language models (LLMs) is moving from research demonstrations to production deployments, yet evaluation remains anchored on factual correctness. Factuality is necessary but not sufficient: a response can be factually grounded and st"
+        }
+      ]
+    },
+    {
+      "topic_id": 7,
+      "topic_name": "data, language, design, representations",
+      "top_terms": [
+        "data",
+        "language",
+        "design",
+        "representations",
+        "training",
+        "inference",
+        "llms",
+        "large"
+      ],
+      "document_count": 431,
+      "review_examples": [
+        {
+          "doc_id": "http://arxiv.org/abs/2610.05305v1",
+          "title": "Characterizing Parallelism Strategies in LLM Inference: Fundamental Compute-Communication Trade-offs",
+          "text": "Characterizing Parallelism Strategies in LLM Inference: Fundamental Compute-Communication Trade-offs\n\nLarge Language Model (LLM) inference has become the dominant workload in modern AI systems, requiring serving infrastructures to maximize throughput while meeting strict latency Service-Level Objectives (SLOs). Since state-of-the-art LLMs exceed the compute and memory capacity of a single GPU, inf"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2610.35282v1",
+          "title": "Satellite Intelligence: Distributed Training, Collaborative Inference,and LLM Adaptation in LEO Constellation",
+          "text": "Satellite Intelligence: Distributed Training, Collaborative Inference,and LLM Adaptation in LEO Constellation\n\nThe proliferation of orbital sensing data and the real-time demands of emerging global services are pushing low Earth orbit (LEO) satellite networks from bent-pipe relays toward intelligent onboard processing. This shift confronts a fundamental tension, where modern artificial intelligenc"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2610.19405v1",
+          "title": "Scaling LLM Inference via Parallelism: Throughput-Latency Trade-off",
+          "text": "Scaling LLM Inference via Parallelism: Throughput-Latency Trade-off\n\nLarge Language Model (LLM) serving systems must balance latency and throughput while efficiently utilizing distributed GPU resources. This challenge arises because inference consists of two fundamentally different phases: prefill, which determines time-to-first-token (TTFT), and decode, which determines inter-token latency (ITL)."
+        }
+      ]
+    }
+  ],
+  "documents_topic_eligible": 5499,
+  "status": "fit",
+  "fitted_topics": 8,
+  "manual_review_note": "Review each topic's terms and examples. LDA topic labels are descriptive term lists, not verified semantic categories.",
+  "sentiment_distribution": {
+    "negative": 1264,
+    "neutral": 76,
+    "positive": 4159
+  },
+  "topic_distribution": {
+    "0": 776,
+    "1": 453,
+    "2": 1378,
+    "3": 864,
+    "4": 519,
+    "5": 600,
+    "6": 478,
+    "7": 431
+  },
+  "sentiment_evaluation": {
+    "dataset": "tests/fixtures/sentiment_labels.csv",
+    "scope": "small manually labeled examples; not a representative corpus-wide accuracy estimate",
+    "examples": 18,
+    "accuracy": 0.944,
+    "confusion_matrix": {
+      "negative": {
+        "negative": 5,
+        "neutral": 1,
+        "positive": 0
+      },
+      "neutral": {
+        "negative": 0,
+        "neutral": 6,
+        "positive": 0
+      },
+      "positive": {
+        "negative": 0,
+        "neutral": 0,
+        "positive": 6
+      }
+    },
+    "per_class": {
+      "negative": {
+        "precision": 1.0,
+        "recall": 0.833,
+        "support": 6
+      },
+      "neutral": {
+        "precision": 0.857,
+        "recall": 1.0,
+        "support": 6
+      },
+      "positive": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 6
+      }
+    },
+    "predictions": [
+      "positive",
+      "positive",
+      "positive",
+      "positive",
+      "positive",
+      "positive",
+      "neutral",
+      "negative",
+      "negative",
+      "negative",
+      "negative",
+      "negative",
+      "neutral",
+      "neutral",
+      "neutral",
+      "neutral",
+      "neutral",
+      "neutral"
+    ]
+  }
+}
