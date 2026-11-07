@@ -90,9 +90,14 @@ class RAGPipeline:
         self.embedder = embedder
         self.store = store
         self.llm = llm
+        
         self.settings = settings
 
-    def ask(self, question: str, where: dict | None = None) -> RAGResult:
+    def ask(self, question: str, where: dict | None = None, top_k: int | None = None) -> RAGResult:
+        """Answer a question. where filters the retrieved chunks; top_k overrides the default."""
+        if top_k is not None and top_k < 1:
+            raise ValueError("top_k must be at least 1")
+
         started = time.perf_counter()
         question = (question or "").strip()
 
@@ -100,7 +105,7 @@ class RAGPipeline:
             result = RAGResult(question[:80], "invalid_query", INVALID_MESSAGE)
             return self._finish(result, started)
 
-        search = semantic_search(question, self.embedder, self.store, k=self.settings.top_k, where=where)
+        search = semantic_search(question, self.embedder, self.store, k=top_k or self.settings.top_k, where=where)
         hits = search["results"]
         timing = {
             "embed_ms": search["timing"]["embed_ms"],

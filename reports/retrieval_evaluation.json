@@ -1,0 +1,1075 @@
+{
+  "ks": [
+    1,
+    3,
+    5,
+    10
+  ],
+  "n_queries": 106,
+  "index_chunks": 24368,
+  "overall": {
+    "n": 106,
+    "precision": {
+      "1": 0.906,
+      "3": 0.664,
+      "5": 0.523,
+      "10": 0.373
+    },
+    "recall": {
+      "1": 0.906,
+      "3": 0.884,
+      "5": 0.877,
+      "10": 0.86
+    },
+    "mrr": 0.921,
+    "latency_ms": {
+      "mean": 17.0,
+      "p50": 12.9,
+      "p95": 21.9
+    }
+  },
+  "by_type": {
+    "title": {
+      "n": 40,
+      "precision": {
+        "1": 1.0,
+        "3": 0.692,
+        "5": 0.495,
+        "10": 0.27
+      },
+      "recall": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 1.0,
+      "latency_ms": {
+        "mean": 24.2,
+        "p50": 14.2,
+        "p95": 27.1
+      },
+      "relevant_papers_mean": 1.0,
+      "same_queries_unfiltered": {
+        "n": 40,
+        "precision": {
+          "1": 1.0,
+          "3": 0.692,
+          "5": 0.495,
+          "10": 0.27
+        },
+        "recall": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "mrr": 1.0,
+        "latency_ms": {
+          "mean": 24.2,
+          "p50": 14.2,
+          "p95": 27.1
+        }
+      },
+      "with_topic_filter": {
+        "n": 40,
+        "precision": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "mrr": 0.0,
+        "latency_ms": {
+          "mean": 24.0,
+          "p50": 16.1,
+          "p95": 30.7
+        }
+      }
+    },
+    "sentence": {
+      "n": 40,
+      "precision": {
+        "1": 0.775,
+        "3": 0.517,
+        "5": 0.365,
+        "10": 0.202
+      },
+      "recall": {
+        "1": 0.775,
+        "3": 0.825,
+        "5": 0.85,
+        "10": 0.85
+      },
+      "mrr": 0.806,
+      "latency_ms": {
+        "mean": 12.5,
+        "p50": 12.5,
+        "p95": 14.5
+      },
+      "relevant_papers_mean": 1.0,
+      "same_queries_unfiltered": {
+        "n": 40,
+        "precision": {
+          "1": 0.775,
+          "3": 0.517,
+          "5": 0.365,
+          "10": 0.202
+        },
+        "recall": {
+          "1": 0.775,
+          "3": 0.825,
+          "5": 0.85,
+          "10": 0.85
+        },
+        "mrr": 0.806,
+        "latency_ms": {
+          "mean": 12.5,
+          "p50": 12.5,
+          "p95": 14.5
+        }
+      },
+      "with_topic_filter": {
+        "n": 40,
+        "precision": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "mrr": 0.0,
+        "latency_ms": {
+          "mean": 14.8,
+          "p50": 14.7,
+          "p95": 16.8
+        }
+      }
+    },
+    "concept": {
+      "n": 26,
+      "precision": {
+        "1": 0.962,
+        "3": 0.846,
+        "5": 0.808,
+        "10": 0.792
+      },
+      "recall": {
+        "1": 0.962,
+        "3": 0.795,
+        "5": 0.731,
+        "10": 0.662
+      },
+      "mrr": 0.974,
+      "latency_ms": {
+        "mean": 12.7,
+        "p50": 12.4,
+        "p95": 16.8
+      },
+      "relevant_papers_mean": 151.5
+    }
+  },
+  "not_found_in_top_k": {
+    "k": 10,
+    "count": 6,
+    "examples": [
+      {
+        "id": "sentence-000",
+        "type": "sentence",
+        "query": "Its speedup, however, can fade as context grows and draft acceptance declines.",
+        "relevant_papers": 1
+      },
+      {
+        "id": "sentence-002",
+        "type": "sentence",
+        "query": "Existing synthesizers automate this task but require users to state their intent as input-output examples.",
+        "relevant_papers": 1
+      },
+      {
+        "id": "sentence-004",
+        "type": "sentence",
+        "query": "However, how it reshapes their internal mechanisms remains poorly understood.",
+        "relevant_papers": 1
+      },
+      {
+        "id": "sentence-020",
+        "type": "sentence",
+        "query": "Each output is classified as Literal, Canonical, or Other, separating faithful transcription from context-consistent rewriting and ordinary recognition errors.",
+        "relevant_papers": 1
+      },
+      {
+        "id": "sentence-034",
+        "type": "sentence",
+        "query": "Trustworthy scientific agents need deterministic validation of execution, not model-side assurances.",
+        "relevant_papers": 1
+      },
+      {
+        "id": "sentence-038",
+        "type": "sentence",
+        "query": "Existing approaches align observed representations, model missingness, or reconstruct across modalities, but do not jointly exploit within-patient and clinically similar inter-patient evidence.",
+        "relevant_papers": 1
+      }
+    ]
+  },
+  "per_query": [
+    {
+      "id": "title-000",
+      "type": "title",
+      "query": "ECG Mirage: Revealing and Mitigating the Underutilisation of ECGs in Vision-Language Models for Clinical Prediction",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 354.0
+    },
+    {
+      "id": "title-001",
+      "type": "title",
+      "query": "READ-Bench: Benchmarking Historical Instance Retrieval for Time-Series Diagnosis",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 22.7
+    },
+    {
+      "id": "title-002",
+      "type": "title",
+      "query": "From Solo to Social Learning: Characterizing Recursive Social Improvement in LLMs",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 38.0
+    },
+    {
+      "id": "title-003",
+      "type": "title",
+      "query": "Issuer-Sovereign Agentic Payments",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 23.5
+    },
+    {
+      "id": "title-004",
+      "type": "title",
+      "query": "From Scene Graphs to Answers: Selective Neuro-Symbolic Reasoning for Autonomous Driving",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 26.5
+    },
+    {
+      "id": "title-005",
+      "type": "title",
+      "query": "Learn How to Act from Your Own Interactions: On-Policy Self-Distillation for GUI Agents",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 25.5
+    },
+    {
+      "id": "title-006",
+      "type": "title",
+      "query": "EquiSELD: Efficient training of equivariant sound event localization and detection networks",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 18.1
+    },
+    {
+      "id": "title-007",
+      "type": "title",
+      "query": "Why Do Conventional World Models Fail to Learn Cellular Automata?",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 17.5
+    },
+    {
+      "id": "title-008",
+      "type": "title",
+      "query": "ALoDLM: Adaptively Looped Diffusion Language Models",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 19.4
+    },
+    {
+      "id": "title-009",
+      "type": "title",
+      "query": "EXAONE Demand 1.0: A Time Series Foundation Model for Demand Forecasting",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 14.2
+    },
+    {
+      "id": "title-010",
+      "type": "title",
+      "query": "CoDeL: Co-Evolutionary Defense against Indirect Prompt Injection in LLM-based Agents",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 14.0
+    },
+    {
+      "id": "title-011",
+      "type": "title",
+      "query": "An auditable conditional-strategy framework for open-ended decision-making in complex lung cancer",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 17.1
+    },
+    {
+      "id": "title-012",
+      "type": "title",
+      "query": "Improving Visual Sensitivity of LLMs on Multimodal Machine Translation with Metric-based Loss Weighting",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.1
+    },
+    {
+      "id": "title-013",
+      "type": "title",
+      "query": "WAM-OPD: Sharpening World Action Models via On-Policy Distillation",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 15.0
+    },
+    {
+      "id": "title-014",
+      "type": "title",
+      "query": "Neural State Prediction: Obstructing Shortcut Learning in EEG Foundation Models",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 10.8
+    },
+    {
+      "id": "title-015",
+      "type": "title",
+      "query": "MinkowskiPE: Minkowski Positional Encoding for Spatiotemporal Perception",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.4
+    },
+    {
+      "id": "title-016",
+      "type": "title",
+      "query": "MECT: Mixture of Experts with CNN-Transformer Network for Speaker verification",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 14.5
+    },
+    {
+      "id": "title-017",
+      "type": "title",
+      "query": "SemReward-VL: Semantic Reward-Guided Video-Language Adaptation for Developmental Behavior Assessment",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 15.9
+    },
+    {
+      "id": "title-018",
+      "type": "title",
+      "query": "CORTEX: A Verified Experience Layer for Generalist Agents",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 14.0
+    },
+    {
+      "id": "title-019",
+      "type": "title",
+      "query": "Smart Content Ingestion for Generative AI Workloads",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 14.6
+    },
+    {
+      "id": "title-020",
+      "type": "title",
+      "query": "OmniVChat: Synthesizing, Benchmarking, and Training for Native Audio-Visual Dialogue",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.0
+    },
+    {
+      "id": "title-021",
+      "type": "title",
+      "query": "MIMESIS: Learning User Simulators as Training Environments for Interactive Agents",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 13.1
+    },
+    {
+      "id": "title-022",
+      "type": "title",
+      "query": "Prediction-Powered Smoothing and Validation for Disaggregated AI Evaluation",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 14.8
+    },
+    {
+      "id": "title-023",
+      "type": "title",
+      "query": "Equal Path Cost, Unequal Output Effects: Understanding Perturbation Propagation in Diffusion Models",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 13.4
+    },
+    {
+      "id": "title-024",
+      "type": "title",
+      "query": "SpeakerMem-R1: Speaker-Centered Dual-Track Memory for Multi-Party Dialogue",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 14.3
+    },
+    {
+      "id": "title-025",
+      "type": "title",
+      "query": "One-Slide Calibration of Pathology Foundation Models",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 19.6
+    },
+    {
+      "id": "title-026",
+      "type": "title",
+      "query": "DyadMem: A Long-Term Memory Benchmark of How Agents Work with Users",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 14.6
+    },
+    {
+      "id": "title-027",
+      "type": "title",
+      "query": "GROB: A Multi-Agent Architecture for Public-Trace Investigation of Candidate Agentic Activity",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 14.2
+    },
+    {
+      "id": "title-028",
+      "type": "title",
+      "query": "AiSearch: Interactive Multi-Modal Search with VLMs",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 15.8
+    },
+    {
+      "id": "title-029",
+      "type": "title",
+      "query": "OmniCam: Omni-Camera Trajectory Generation via Geometry-Grounded Pose Token Learning",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.7
+    },
+    {
+      "id": "title-030",
+      "type": "title",
+      "query": "D-Scope: Decomposing and Steering Diffusion Transformers with Sparse Autoencoders",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.3
+    },
+    {
+      "id": "title-031",
+      "type": "title",
+      "query": "Task-Relevant Null-Space Residuals for Non-Injective Neural Mappings",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 13.2
+    },
+    {
+      "id": "title-032",
+      "type": "title",
+      "query": "COUNTERMEM: World-Model Verified Counter-Factual Memory for Language Agents",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 13.0
+    },
+    {
+      "id": "title-033",
+      "type": "title",
+      "query": "BatSLAM 2.0: Sequence-Verified Sonar Place Recognition in a Robust Pose Graph",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 13.2
+    },
+    {
+      "id": "title-034",
+      "type": "title",
+      "query": "Clarify the User or Verify the World? Uncertainty Routing for Proactive Agents",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.9
+    },
+    {
+      "id": "title-035",
+      "type": "title",
+      "query": "VisionQ: VLM-as-a-Judge Taxonomy, Dataset and Benchmark for Qualitative Analysis in Computer Vision",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 11.1
+    },
+    {
+      "id": "title-036",
+      "type": "title",
+      "query": "An Investigation of Model Coherence: Narrow Finetunes Contradict Themselves Under Resampling",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.4
+    },
+    {
+      "id": "title-037",
+      "type": "title",
+      "query": "Environmental Feedback Modeling Matters: Rethinking Feedback Treatment in Agentic Hindsight Self-Distillation",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 11.0
+    },
+    {
+      "id": "title-038",
+      "type": "title",
+      "query": "Low-Cost Video--Time Priors as a Strong Baseline for EEG--fNIRS Emotion Regression on Familiar Videos",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 14.5
+    },
+    {
+      "id": "title-039",
+      "type": "title",
+      "query": "BridgeCast: Bridging Ocean Wave Forecasts to Reanalysis via Flow Matching with Exogenous Variables",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 11.5
+    },
+    {
+      "id": "sentence-000",
+      "type": "sentence",
+      "query": "Its speedup, however, can fade as context grows and draft acceptance declines.",
+      "relevant_papers": 1,
+      "reciprocal_rank": 0.0,
+      "latency_ms": 13.3
+    },
+    {
+      "id": "sentence-001",
+      "type": "sentence",
+      "query": "We propose Dual-Stream OSSE-LSTM, an episodic metric-learning framework that pairs an Omni-Scale CNN with Squeeze-and-Ex",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.7
+    },
+    {
+      "id": "sentence-002",
+      "type": "sentence",
+      "query": "Existing synthesizers automate this task but require users to state their intent as input-output examples.",
+      "relevant_papers": 1,
+      "reciprocal_rank": 0.0,
+      "latency_ms": 13.0
+    },
+    {
+      "id": "sentence-003",
+      "type": "sentence",
+      "query": "CounterSteer largely neutralizes instructional takeover: a black-box framing search cracks 3 of 18 development samples.",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 13.1
+    },
+    {
+      "id": "sentence-004",
+      "type": "sentence",
+      "query": "However, how it reshapes their internal mechanisms remains poorly understood.",
+      "relevant_papers": 1,
+      "reciprocal_rank": 0.0,
+      "latency_ms": 12.8
+    },
+    {
+      "id": "sentence-005",
+      "type": "sentence",
+      "query": "These results demonstrate the potential of VLA models for real-world physical traffic control.",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.6
+    },
+    {
+      "id": "sentence-006",
+      "type": "sentence",
+      "query": "Existing methods typically adapt to detected shifts or learn drift-insensitive representations, but do not resolve this ",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.4
+    },
+    {
+      "id": "sentence-007",
+      "type": "sentence",
+      "query": "This also explains the rotation: it removes this within-block variation, so weighting in the native basis and rotating a",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 11.8
+    },
+    {
+      "id": "sentence-008",
+      "type": "sentence",
+      "query": "To investigate this behavior, we pretrain a family of transformers from scratch across multiple KV-compression designs, ",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 14.6
+    },
+    {
+      "id": "sentence-009",
+      "type": "sentence",
+      "query": "Using this workflow, we construct AgenticShadow, a dataset of 17,138 image-mask-target triplets spanning general scenes,",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.1
+    },
+    {
+      "id": "sentence-010",
+      "type": "sentence",
+      "query": "Whereas the natural sciences provide objectively correct relationships, financial valuation constitutes a distinct class",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.2
+    },
+    {
+      "id": "sentence-011",
+      "type": "sentence",
+      "query": "Crucially, these natural-language user profiles enable direct user interaction and intervention, allowing users to custo",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.5
+    },
+    {
+      "id": "sentence-012",
+      "type": "sentence",
+      "query": "Through extensive experiments on WideIRSTD-Full and IRSTD-1k datasets, we demonstrate that IRSTD-Agent outperforms the e",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 10.8
+    },
+    {
+      "id": "sentence-013",
+      "type": "sentence",
+      "query": "To address this, we propose RouteFlow, a framework that reformulates synthesizable molecular design as a search over a c",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 11.3
+    },
+    {
+      "id": "sentence-014",
+      "type": "sentence",
+      "query": "We present MedCORE (Medical Criteria-Oriented Reasoning and Evidence), a structured diagnostic framework that operationa",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 11.8
+    },
+    {
+      "id": "sentence-015",
+      "type": "sentence",
+      "query": "On 100,000 fixed-root Leduc comparisons, the fully coupled CP-GRPO instantiation reduces return-contrast variance from 4",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 11.0
+    },
+    {
+      "id": "sentence-016",
+      "type": "sentence",
+      "query": "Effective reasoning therefore requires dynamically deciding when additional computation is useful based on the reasoner'",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 13.3
+    },
+    {
+      "id": "sentence-017",
+      "type": "sentence",
+      "query": "We demonstrate real-world DeFi efficacy via WerracleFeeHook.sol, a Uniswap v4 dynamic swap fee governor that measures or",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.8
+    },
+    {
+      "id": "sentence-018",
+      "type": "sentence",
+      "query": "The code for our Safety Nudges extension is publicly available at https://github.com/jtbwedgwood/safety-nudges.",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.3
+    },
+    {
+      "id": "sentence-019",
+      "type": "sentence",
+      "query": "We argue that generation provenance is necessary but not sufficient for behavior attribution: it defines the candidate c",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 10.8
+    },
+    {
+      "id": "sentence-020",
+      "type": "sentence",
+      "query": "Each output is classified as Literal, Canonical, or Other, separating faithful transcription from context-consistent rew",
+      "relevant_papers": 1,
+      "reciprocal_rank": 0.0,
+      "latency_ms": 13.0
+    },
+    {
+      "id": "sentence-021",
+      "type": "sentence",
+      "query": "Such an expert is often available and can guide early training, but its sub-optimality limits final performance.",
+      "relevant_papers": 1,
+      "reciprocal_rank": 0.5,
+      "latency_ms": 12.1
+    },
+    {
+      "id": "sentence-022",
+      "type": "sentence",
+      "query": "The PyroStack dataset addresses this gap by providing a harmonized, event-based collection of wildfire and environmental",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 11.3
+    },
+    {
+      "id": "sentence-023",
+      "type": "sentence",
+      "query": "The joint model uses an encoder-decoder (sequence-to-sequence) architecture to learn the latent structure in patients' t",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 11.7
+    },
+    {
+      "id": "sentence-024",
+      "type": "sentence",
+      "query": "It further reaches 73.6% on the dyadic LoCoMo benchmark, demonstrating generalization beyond multi-actor conversations.",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 13.5
+    },
+    {
+      "id": "sentence-025",
+      "type": "sentence",
+      "query": "We evaluate four language models across 25 disease endpoints on three tasks: Disease Trajectory Forecasting, Disease Ris",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 11.6
+    },
+    {
+      "id": "sentence-026",
+      "type": "sentence",
+      "query": "Ablation studies confirm that explicit latency modeling is the key discriminative signal for identifying high-quality to",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 14.5
+    },
+    {
+      "id": "sentence-027",
+      "type": "sentence",
+      "query": "These exploratory results expose both answer errors and failures to complete the teaching experience.",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.6
+    },
+    {
+      "id": "sentence-028",
+      "type": "sentence",
+      "query": "Experimental results demonstrate our method outperforms commercial general and medical LLMs and open-source models.",
+      "relevant_papers": 1,
+      "reciprocal_rank": 0.25,
+      "latency_ms": 12.1
+    },
+    {
+      "id": "sentence-029",
+      "type": "sentence",
+      "query": "Many existing credit assignment methods rely on ground-truth answers to define process rewards, limiting their applicabi",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.9
+    },
+    {
+      "id": "sentence-030",
+      "type": "sentence",
+      "query": "We introduce Knee3DVLM, a sequence-aware VLM that uses full-volume DESS and fluid-sensitive TSE MRI to predict 57 anatom",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 11.4
+    },
+    {
+      "id": "sentence-031",
+      "type": "sentence",
+      "query": "In practice, however, model providers may not disclose which concepts have been removed, and even with access to the ori",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 13.2
+    },
+    {
+      "id": "sentence-032",
+      "type": "sentence",
+      "query": "A knapsack solver allocates bits under an exact byte budget, with guardrails against catastrophic 2-bit assignments.",
+      "relevant_papers": 1,
+      "reciprocal_rank": 0.5,
+      "latency_ms": 12.2
+    },
+    {
+      "id": "sentence-033",
+      "type": "sentence",
+      "query": "We study this question using citation-normalized impact as a noisy but scalable proxy for scholarly uptake.",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.7
+    },
+    {
+      "id": "sentence-034",
+      "type": "sentence",
+      "query": "Trustworthy scientific agents need deterministic validation of execution, not model-side assurances.",
+      "relevant_papers": 1,
+      "reciprocal_rank": 0.0,
+      "latency_ms": 12.1
+    },
+    {
+      "id": "sentence-035",
+      "type": "sentence",
+      "query": "We evaluate this default on approximately 73,000 candidate normative documents supplied to a production deployment.",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 14.8
+    },
+    {
+      "id": "sentence-036",
+      "type": "sentence",
+      "query": "While the results appear generally usable and the baseline models offer the best overall performance, future studies sho",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.4
+    },
+    {
+      "id": "sentence-037",
+      "type": "sentence",
+      "query": "Motivated by this observation, we find that distilling the input Jacobians of short-horizon policies into long-horizon p",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.9
+    },
+    {
+      "id": "sentence-038",
+      "type": "sentence",
+      "query": "Existing approaches align observed representations, model missingness, or reconstruct across modalities, but do not join",
+      "relevant_papers": 1,
+      "reciprocal_rank": 0.0,
+      "latency_ms": 13.6
+    },
+    {
+      "id": "sentence-039",
+      "type": "sentence",
+      "query": "A recent line of work mitigates this issue by using loss-based signals to identify informative samples, but these signal",
+      "relevant_papers": 1,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 11.7
+    },
+    {
+      "id": "concept-000",
+      "type": "concept",
+      "query": "large language model",
+      "relevant_papers": 1094,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.2
+    },
+    {
+      "id": "concept-001",
+      "type": "concept",
+      "query": "reinforcement learning",
+      "relevant_papers": 491,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.9
+    },
+    {
+      "id": "concept-002",
+      "type": "concept",
+      "query": "diffusion model",
+      "relevant_papers": 109,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 10.6
+    },
+    {
+      "id": "concept-003",
+      "type": "concept",
+      "query": "graph neural network",
+      "relevant_papers": 44,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.1
+    },
+    {
+      "id": "concept-004",
+      "type": "concept",
+      "query": "federated learning",
+      "relevant_papers": 33,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 13.4
+    },
+    {
+      "id": "concept-005",
+      "type": "concept",
+      "query": "retrieval-augmented generation",
+      "relevant_papers": 69,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 11.2
+    },
+    {
+      "id": "concept-006",
+      "type": "concept",
+      "query": "chain-of-thought",
+      "relevant_papers": 89,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.5
+    },
+    {
+      "id": "concept-007",
+      "type": "concept",
+      "query": "knowledge distillation",
+      "relevant_papers": 20,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.3
+    },
+    {
+      "id": "concept-008",
+      "type": "concept",
+      "query": "contrastive learning",
+      "relevant_papers": 35,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.4
+    },
+    {
+      "id": "concept-009",
+      "type": "concept",
+      "query": "fine-tuning",
+      "relevant_papers": 418,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 14.2
+    },
+    {
+      "id": "concept-010",
+      "type": "concept",
+      "query": "vision-language model",
+      "relevant_papers": 212,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 14.2
+    },
+    {
+      "id": "concept-011",
+      "type": "concept",
+      "query": "hallucination",
+      "relevant_papers": 76,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.4
+    },
+    {
+      "id": "concept-012",
+      "type": "concept",
+      "query": "alignment",
+      "relevant_papers": 398,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.2
+    },
+    {
+      "id": "concept-013",
+      "type": "concept",
+      "query": "bayesian optimization",
+      "relevant_papers": 12,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 14.1
+    },
+    {
+      "id": "concept-014",
+      "type": "concept",
+      "query": "time series forecasting",
+      "relevant_papers": 31,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.3
+    },
+    {
+      "id": "concept-015",
+      "type": "concept",
+      "query": "recommender system",
+      "relevant_papers": 15,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.4
+    },
+    {
+      "id": "concept-016",
+      "type": "concept",
+      "query": "reward model",
+      "relevant_papers": 55,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 12.9
+    },
+    {
+      "id": "concept-017",
+      "type": "concept",
+      "query": "mixture of experts",
+      "relevant_papers": 66,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 16.8
+    },
+    {
+      "id": "concept-018",
+      "type": "concept",
+      "query": "quantization",
+      "relevant_papers": 103,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 16.9
+    },
+    {
+      "id": "concept-019",
+      "type": "concept",
+      "query": "multi-agent",
+      "relevant_papers": 267,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 17.8
+    },
+    {
+      "id": "concept-020",
+      "type": "concept",
+      "query": "tool use",
+      "relevant_papers": 100,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 13.1
+    },
+    {
+      "id": "concept-021",
+      "type": "concept",
+      "query": "code generation",
+      "relevant_papers": 87,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 11.8
+    },
+    {
+      "id": "concept-022",
+      "type": "concept",
+      "query": "speech recognition",
+      "relevant_papers": 22,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 8.9
+    },
+    {
+      "id": "concept-023",
+      "type": "concept",
+      "query": "anomaly detection",
+      "relevant_papers": 48,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 9.6
+    },
+    {
+      "id": "concept-024",
+      "type": "concept",
+      "query": "uncertainty estimation",
+      "relevant_papers": 10,
+      "reciprocal_rank": 0.333,
+      "latency_ms": 10.0
+    },
+    {
+      "id": "concept-025",
+      "type": "concept",
+      "query": "benchmark dataset",
+      "relevant_papers": 35,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 10.8
+    }
+  ]
+}

@@ -40,6 +40,12 @@ class Settings:
 
     log_path: str | None = "logs/rag_queries.jsonl"
 
+    # Where the index lives, and the HTTP service (Week 5)
+    db_path: str = "chroma_db"
+    collection: str = "arxiv_chunks"
+    embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"
+    api_log_path: str | None = "logs/api_requests.jsonl"
+
     def __post_init__(self):
         if not self.models:
             raise ValueError("at least one model is required")
@@ -72,6 +78,7 @@ def load_settings(env: Mapping[str, str] | None = None) -> Settings:
         env = os.environ
 
     defaults = Settings()
+    api_log = env.get("API_LOG_PATH")
     models_raw = env.get("OPENROUTER_MODELS", "")
     models = tuple(m.strip() for m in models_raw.split(",") if m.strip()) or defaults.models
 
@@ -88,4 +95,8 @@ def load_settings(env: Mapping[str, str] | None = None) -> Settings:
         min_chunk_score=_number(env, "RAG_MIN_CHUNK_SCORE", float, defaults.min_chunk_score),
         max_context_chars=_number(env, "RAG_MAX_CONTEXT_CHARS", int, defaults.max_context_chars),
         max_repairs=_number(env, "RAG_MAX_REPAIRS", int, defaults.max_repairs),
+        db_path=env.get("CHROMA_DB_PATH") or defaults.db_path,
+        collection=env.get("CHROMA_COLLECTION") or defaults.collection,
+        embedding_model=env.get("EMBEDDING_MODEL") or defaults.embedding_model,
+        api_log_path=defaults.api_log_path if api_log is None else (api_log or None),
     )

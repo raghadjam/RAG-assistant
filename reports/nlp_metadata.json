@@ -39,65 +39,65 @@
   "topics": [
     {
       "topic_id": 0,
-      "topic_name": "reasoning, evidence, multimodal, graph",
+      "topic_name": "memory, context, tokens, inference",
       "top_terms": [
-        "reasoning",
-        "evidence",
-        "multimodal",
-        "graph",
-        "language",
-        "knowledge",
-        "evaluation",
-        "human"
+        "memory",
+        "context",
+        "tokens",
+        "inference",
+        "routing",
+        "token",
+        "attention",
+        "state"
       ],
-      "document_count": 776,
+      "document_count": 588,
       "review_examples": [
         {
-          "doc_id": "http://arxiv.org/abs/2610.05919v1",
-          "title": "Non-invasive Seizure Detection Using Wearable Wrist-worn Accelerometry and Deep Learning",
-          "text": "Non-invasive Seizure Detection Using Wearable Wrist-worn Accelerometry and Deep Learning\n\nSeizure monitoring and detection are crucial for reducing the morbidity and mortality associated with seizures. Current epilepsy care, often involving expensive video-electroencephalography (VEEG) monitoring, requires specialized expertise and is limited to in-hospital settings, and intrusive in nature. Seizu"
+          "doc_id": "http://arxiv.org/abs/2610.04313v1",
+          "title": "MOIRA: Mass-Oriented Indexing with Ragged Attention for Long-Context Decoding",
+          "text": "MOIRA: Mass-Oriented Indexing with Ragged Attention for Long-Context Decoding\n\nLong-context decoding is limited by memory bandwidth, because every output token reads the KV cache of every layer. Sparse decoding reduces this cost by reading only part of the KV cache. We observe that the number of pages a query needs varies widely across KV heads, layers and steps. Fixed budgets are simple, but they"
         },
         {
-          "doc_id": "http://arxiv.org/abs/2610.15351v1",
-          "title": "Siam-ALS: An Explainable Siamese Deep Learning Framework for Early ALS Detection Using EEG and Eye-Tracking Signals",
-          "text": "Siam-ALS: An Explainable Siamese Deep Learning Framework for Early ALS Detection Using EEG and Eye-Tracking Signals\n\nAmyotrophic lateral sclerosis (ALS) diagnosis remains challenging due to heterogeneous symptoms and reliance on clinical assessment, underscoring the need for objective, data-driven approaches that leverage patient-generated physiological signals. We propose Siam-ALS, an explainable"
+          "doc_id": "http://arxiv.org/abs/2609.37626v1",
+          "title": "SPLASH: Switching Parallel Layouts of Attention with Seamless Handoff for LLM Serving",
+          "text": "SPLASH: Switching Parallel Layouts of Attention with Seamless Handoff for LLM Serving\n\nNo single way of parallelizing attention serves large language models well under all loads. Low concurrency favors tensor parallelism, many independent requests favor data-parallel attention, and long prompts favor context parallelism. Reasoning, agentic, and RL-rollout workloads make a fixed choice untenable: a"
         },
         {
-          "doc_id": "http://arxiv.org/abs/2610.18635v1",
-          "title": "DTScribe: Generating Models for Digital Twin Reporting using Local Large Language Models",
-          "text": "DTScribe: Generating Models for Digital Twin Reporting using Local Large Language Models\n\nThe development of a digital twin brings together many stakeholders and technical components. We have previously investigated the reporting of the conceptual architecture for these digital twins as an artifact for discussion. However, we find that the activity of modeling the digital twin for visualization an"
+          "doc_id": "http://arxiv.org/abs/2609.34866v1",
+          "title": "From Attention Sensitivity to Layer Role: Revisiting Mixed-Precision Quantization of Transformers",
+          "text": "From Attention Sensitivity to Layer Role: Revisiting Mixed-Precision Quantization of Transformers\n\nMost post-training quantization pipelines fit each weight matrix to its pretrained counterpart, one matrix at a time. Whether that proxy tracks what an attention block actually computes, or how errors in the Q, K and V projections compound inside the softmax, is rarely checked. We write the objective"
         }
       ]
     },
     {
       "topic_id": 1,
-      "topic_name": "memory, action, policy, decision",
+      "topic_name": "data, clinical, evaluation, prediction",
       "top_terms": [
-        "memory",
-        "action",
-        "policy",
-        "decision",
-        "robot",
-        "actions",
-        "world",
-        "context"
+        "data",
+        "clinical",
+        "evaluation",
+        "prediction",
+        "graph",
+        "time",
+        "benchmark",
+        "datasets"
       ],
-      "document_count": 453,
+      "document_count": 257,
       "review_examples": [
         {
-          "doc_id": "http://arxiv.org/abs/2610.17748v1",
-          "title": "I3L: Iterative Interactive Imitation Learning for Whole-Body Mobile Manipulation",
-          "text": "I3L: Iterative Interactive Imitation Learning for Whole-Body Mobile Manipulation\n\nPolicies trained offline from teleoperated demonstrations can degrade outside their training distribution. This gap is particularly acute in long-horizon whole-body mobile manipulation, where long horizons amplify compounding errors and coordinated arm, torso, and base motion makes exhaustive demonstration coverage i"
+          "doc_id": "http://arxiv.org/abs/2609.39010v1",
+          "title": "An Uncertainty-Guided Digital Twin Framework for Online Adaptive Proton Therapy in Head and Neck Cancer: A Feasibility Study",
+          "text": "An Uncertainty-Guided Digital Twin Framework for Online Adaptive Proton Therapy in Head and Neck Cancer: A Feasibility Study\n\nObjective: Head and neck (HN) proton therapy spans six to seven weeks of anatomical change, while offline replanning takes about a week. We present an uncertainty-guided digital twin (UGDT) framework that forecasts treatment-day anatomy before treatment and evaluate whether"
         },
         {
-          "doc_id": "http://arxiv.org/abs/2610.25603v1",
-          "title": "When Better Opportunities Backfire: Service Worker Responses to Parallel AI Deployment in Customer Acquisition",
-          "text": "When Better Opportunities Backfire: Service Worker Responses to Parallel AI Deployment in Customer Acquisition\n\nAs AI voice agents get deployed in high-volume contact centers, firms can route low-intent leads to AI and allocate high-intent leads to human workers. Drawing on sequential search theory, we posit that AI-induced task allocation reshapes work, enriching opportunities facing human worker"
+          "doc_id": "http://arxiv.org/abs/2609.29740v1",
+          "title": "TopU-LBVS: A Realistic Multi Target Benchmark for Ligand Based Virtual Screening",
+          "text": "TopU-LBVS: A Realistic Multi Target Benchmark for Ligand Based Virtual Screening\n\nLigand-based virtual screening (LBVS) is a practical first-pass tool in early-stage drug discovery, but existing benchmarks can overestimate performance through random negatives, easy decoys, limited target coverage, and non-standardized evaluation protocols. We introduce TopU-LBVS, a multi-target benchmark for LBVS "
         },
         {
-          "doc_id": "http://arxiv.org/abs/2610.07946v1",
-          "title": "Adapting Vision-Language-Action Models to Unknown Visual Disruptions During Execution",
-          "text": "Adapting Vision-Language-Action Models to Unknown Visual Disruptions During Execution\n\nVisual disruptions can arise while a robot is executing a task, leaving a vision-language-action (VLA) policy to respond without knowing the disruption type or timing. We introduce Self-supervised Adaptation from Leftover Trajectories (SALT), which uses the leftover trajectory, the unexecuted part of the previou"
+          "doc_id": "http://arxiv.org/abs/2610.05863v1",
+          "title": "CCQ: A Multi-State Child Care Quality Dataset to Support AI for Children's Health Research",
+          "text": "CCQ: A Multi-State Child Care Quality Dataset to Support AI for Children's Health Research\n\nHigh-quality child care in early life is a critical determinant of children's growth and development. Research on child care quality has been constrained by fragmented, non-research-friendly, and privacy-bound datasets. We present CCQ (Child Care Quality), a large-scale, de-identified dataset for applied da"
         }
       ]
     },
@@ -109,187 +109,187 @@
         "agent",
         "llm",
         "execution",
-        "code",
-        "evidence",
         "evaluation",
+        "code",
+        "agentic",
         "benchmark"
       ],
-      "document_count": 1378,
+      "document_count": 1126,
       "review_examples": [
         {
-          "doc_id": "http://arxiv.org/abs/2610.36114v1",
-          "title": "Context Is a Pipeline, Not a Window: Information Attrition in LLM Agent Harnesses",
-          "text": "Context Is a Pipeline, Not a Window: Information Attrition in LLM Agent Harnesses\n\nLLM agents are judged by two numbers: the size of the context window, and how often the final answer is correct. Both numbers miss a third thing: how much of a tool's output is lost before the model ever sees it. We measured this loss in a real tool-using agent. The agent finds the cause of injected faults by readin"
+          "doc_id": "http://arxiv.org/abs/2609.39352v1",
+          "title": "Hiding in Plain Sight: Decoupling Pretext from Actuation for Skill Poisoning in LLM Agents",
+          "text": "Hiding in Plain Sight: Decoupling Pretext from Actuation for Skill Poisoning in LLM Agents\n\nLLM agents increasingly rely on reusable Skills for complex, multi-step tasks, creating a critical supply-chain attack surface where poisoned Skill content steers agent decision loops under benign requests. Existing skill poisoning attacks either colocate actuation with its contextual pretext or distribute "
         },
         {
-          "doc_id": "http://arxiv.org/abs/2610.30495v1",
-          "title": "From Prose to Properties: Testing Research Claims with ARATest for Agent-Native Science",
-          "text": "From Prose to Properties: Testing Research Claims with ARATest for Agent-Native Science\n\nAI agents now run experiments and report findings, so research produces claims faster than researchers can check them. Each empirical claim implies a property that must hold over its cases, but it states that property only in prose. Without an explicit property, no test can decide which evidence would falsify "
+          "doc_id": "http://arxiv.org/abs/2609.40284v1",
+          "title": "cua-speedrun: Standardized Benchmarking of the Speed of Computer-Use Agents",
+          "text": "cua-speedrun: Standardized Benchmarking of the Speed of Computer-Use Agents\n\nComputer use agents (CUAs), which use graphical user interfaces (GUIs) to complete tasks on a computer, have recently surpassed human performance on many standard benchmarks, including difficult long-horizon tasks. Their capabilities are undoubtedly impressive, however, a key barrier to the widespread adoption and deploym"
         },
         {
-          "doc_id": "http://arxiv.org/abs/2610.07257v2",
-          "title": "MemMux: Runtime Verification and Honest Resource Attribution for Fleets of Parallel Coding Agents",
-          "text": "MemMux: Runtime Verification and Honest Resource Attribution for Fleets of Parallel Coding Agents\n\nDevelopers increasingly run a fleet of coding agents side by side on one workstation. Terminal multiplexers like tmux and a new generation of agent managers were built to arrange windows, not to govern memory. When ten agents each spawn language servers, test runners, and browsers, no standard tool c"
+          "doc_id": "http://arxiv.org/abs/2610.04927v1",
+          "title": "Assembling Insights for Agentic Machine Learning Engineering Systems",
+          "text": "Assembling Insights for Agentic Machine Learning Engineering Systems\n\nAgentic machine learning engineering (MLE) is an emerging AI4SE application for complex ML tasks and a step toward recursive self-improvement of AI systems. Recent agentic MLE systems show the value of leveraging insights from related MLE tasks: some systems condition code generation on expert domain knowledge, which is implicit"
         }
       ]
     },
     {
       "topic_id": 3,
-      "topic_name": "training, data, accuracy, neural",
+      "topic_name": "evidence, agent, answer, llm",
       "top_terms": [
-        "training",
-        "data",
+        "evidence",
+        "agent",
+        "answer",
+        "llm",
+        "language",
         "accuracy",
-        "neural",
-        "error",
-        "fixed",
-        "attention",
-        "trained"
+        "does",
+        "evaluation"
       ],
-      "document_count": 864,
+      "document_count": 943,
       "review_examples": [
         {
-          "doc_id": "http://arxiv.org/abs/2610.34945v1",
-          "title": "Relational Composition as Parallel Transport: What Per-Entity Frames Force in Attention",
-          "text": "Relational Composition as Parallel Transport: What Per-Entity Frames Force in Attention\n\nA dot product means something only when both vectors share a coordinate system. Content words have one; a fresh entity does not: rotating its coordinates alone changes nothing. We take this per-entity frame freedom as a symmetry and ask what it forces in attention. For orthogonal transports, invariant scores d"
+          "doc_id": "http://arxiv.org/abs/2609.35036v1",
+          "title": "Persona Following Is Not Selective Control: The Neutrality Gap in LLM User Simulation",
+          "text": "Persona Following Is Not Selective Control: The Neutrality Gap in LLM User Simulation\n\nPersona prompting is widely used to construct user simulations with large language models (LLMs), yet it relies on a largely untested assumption: specifying one user attribute should change that attribute alone. We test this assumption and identify a systematic failure of selective control: across all eight blac"
         },
         {
-          "doc_id": "http://arxiv.org/abs/2610.40055v1",
-          "title": "One Vector or Many? Clustered Optimal-Transport Steering under Quantization",
-          "text": "One Vector or Many? Clustered Optimal-Transport Steering under Quantization\n\nActivation steering changes what a language model generates by editing its hidden states at inference time. Its most common form adds one vector, the difference of class means (DiM), to every hidden state. CHaRS (concept heterogeneity-aware representation steering) uses optimal transport instead: an entropic plan pairs th"
+          "doc_id": "http://arxiv.org/abs/2610.04433v1",
+          "title": "What Does a Harness Buy? Tokens, Mostly",
+          "text": "What Does a Harness Buy? Tokens, Mostly\n\nA coding agent is a language model wrapped in a harness: the system prompt, the tool set, and the context management that turn a chat model into something that can work inside a repository. Production harnesses ship releases daily, vendors advertise pass-rate gains from harness changes, and leaderboards mix harnesses freely. What is rarely measured is how m"
         },
         {
-          "doc_id": "http://arxiv.org/abs/2610.07497v1",
-          "title": "Does Muon Need Fine-Grained Spectral Shaping?",
-          "text": "Does Muon Need Fine-Grained Spectral Shaping?\n\nMuon combines current and past gradients into matrix momentum. For $M=UΣV^\\top$, the idealized polar update $Q=UV^\\top$ gives every singular direction the same weight. We refer to this as the flat profile. Several recent optimizers replace this flat profile with fine-grained spectral maps that give each direction its own gain. We ask how much of this "
+          "doc_id": "http://arxiv.org/abs/2609.30151v1",
+          "title": "Does a model's stated reason for rejecting a candidate do any work?",
+          "text": "Does a model's stated reason for rejecting a candidate do any work?\n\nAsked to choose between candidates and explain the choice, a language model often rejects a rival by naming a fact its profile lacks: no director, no date of death. That sentence is a claim about the text in front of the model, and it can be tested without any judge. We insert a real corpus sentence stating the named fact into th"
         }
       ]
     },
     {
       "topic_id": 4,
-      "topic_name": "generation, diffusion, visual, image",
+      "topic_name": "reasoning, language, data, visual",
       "top_terms": [
-        "generation",
-        "diffusion",
+        "reasoning",
+        "language",
+        "data",
         "visual",
-        "image",
-        "inference",
-        "tokens",
-        "token",
-        "propose"
+        "llms",
+        "large",
+        "alignment",
+        "generation"
       ],
-      "document_count": 519,
+      "document_count": 739,
       "review_examples": [
         {
-          "doc_id": "http://arxiv.org/abs/2610.07037v1",
-          "title": "Inference-Time Projection for Physically Valid Biomolecular Diffusion Models",
-          "text": "Inference-Time Projection for Physically Valid Biomolecular Diffusion Models\n\nAlphaFold 3-style cofolding models predict biomolecular complexes with high structural accuracy, yet a large fraction of their outputs are physically invalid: chains overlap at interfaces, ligand bond lengths and angles are distorted, rings are non-planar, and stereocentres are inverted. Current approaches either steer t"
+          "doc_id": "http://arxiv.org/abs/2609.35599v2",
+          "title": "Signatures of semantic search in the activations of large language models",
+          "text": "Signatures of semantic search in the activations of large language models\n\nWhen recalling lists of concepts (e.g., animals) during the semantic fluency task (SFT), both humans and large language models (LLMs) organise their output into clusters of related items (e.g., sea animals) that are punctuated by strategic switches between clusters. In humans, this pattern can be explained by a semantic for"
         },
         {
-          "doc_id": "http://arxiv.org/abs/2610.28441v1",
-          "title": "Stratified Sparse Attention: Reducing the Sparse-to-Dense Gap at Extreme Sparsity",
-          "text": "Stratified Sparse Attention: Reducing the Sparse-to-Dense Gap at Extreme Sparsity\n\nLarge Language Model inference over long contexts is increasingly bottlenecked by the cost of attending to a growing Key-Value (KV) cache. Sparse attention reduces this cost by accessing only a fraction of the cache, but existing methods face a trade-off between deterministic retrieval, which captures high-scoring t"
+          "doc_id": "http://arxiv.org/abs/2610.04188v2",
+          "title": "Agentic AI with Structured CoT for Enhancing AI's Spatial Intelligence: Visualization and Reasoning of Rotation",
+          "text": "Agentic AI with Structured CoT for Enhancing AI's Spatial Intelligence: Visualization and Reasoning of Rotation\n\nRecent studies show that artificial intelligence (AI) with language and vision capabilities still experiences limitations in spatial reasoning. In this paper, we have studied the spatial capabilities of advanced generative AI to understand the rotations of objects in 3D space, utilizing"
         },
         {
-          "doc_id": "http://arxiv.org/abs/2610.28543v1",
-          "title": "Binary Discrete Diffusion: Candidate-Set Diffusion for Logic and Planning Tasks",
-          "text": "Binary Discrete Diffusion: Candidate-Set Diffusion for Logic and Planning Tasks\n\nDiscrete diffusion models iteratively denoise a noisy sequence of categorical data such as text, enabling any-order generation with self-correction and in-filling capabilities. This makes them promising candidates for reasoning, planning, and constrained-generation tasks like coding and math. Yet masked and uniform di"
+          "doc_id": "http://arxiv.org/abs/2609.24372v1",
+          "title": "URA-NER: A Unified Retrieval-Augmented Framework with Retrieval Alignment and Uncertainty Reduction for Low-Resource NER",
+          "text": "URA-NER: A Unified Retrieval-Augmented Framework with Retrieval Alignment and Uncertainty Reduction for Low-Resource NER\n\nIn-context learning (ICL) based on large language models (LLMs) has shown promising potential in alleviating performance bottlenecks caused by the limited availability of annotated data in Named Entity Recognition (NER). However, existing methods still face issues of retrieval "
         }
       ]
     },
     {
       "topic_id": 5,
-      "topic_name": "reasoning, training, reward, reinforcement",
+      "topic_name": "policy, training, action, teacher",
       "top_terms": [
-        "reasoning",
-        "training",
-        "reward",
-        "reinforcement",
         "policy",
-        "optimization",
-        "language",
-        "retrieval"
+        "training",
+        "action",
+        "teacher",
+        "reward",
+        "world",
+        "reasoning",
+        "reinforcement"
       ],
-      "document_count": 600,
+      "document_count": 716,
       "review_examples": [
         {
-          "doc_id": "http://arxiv.org/abs/2610.37706v1",
-          "title": "Search-Guided Reasoning Trace Curation for Verilog Generation",
-          "text": "Search-Guided Reasoning Trace Curation for Verilog Generation\n\nRecent advances in large language models (LLMs) have improved Verilog generation. However, most training pipelines distill natural-language reasoning traces whose intermediate design decisions are weakly structured and are primarily selected according to the correctness of the final generated RTL. We present MCTS-SFT, a verifier-guided"
+          "doc_id": "http://arxiv.org/abs/2610.12026v1",
+          "title": "Humanoid World Action Model With Joint State--Action Generation",
+          "text": "Humanoid World Action Model With Joint State--Action Generation\n\nHumanoid robots are a promising platform for general-purpose manipulation. Recent Vision-Language-Action (VLA) policies learn actions directly from multimodal observations, while World Action Models (WAMs) further incorporate future visual prediction to improve action generation. However, in hierarchical humanoid systems, VLA and WAM"
         },
         {
-          "doc_id": "http://arxiv.org/abs/2610.28770v1",
-          "title": "ReAPO: Retry-Aware Policy Optimization for Efficient Exploration in LLM Reasoning",
-          "text": "ReAPO: Retry-Aware Policy Optimization for Efficient Exploration in LLM Reasoning\n\nRLVR improves language-model reasoning, but commonly relies on independent stochastic rollouts for exploration, which can repeatedly sample similar failed strategies. Prior work has seen success with approaches that guide exploration by introducing dependence into the sampling process by including incorrect solution"
+          "doc_id": "http://arxiv.org/abs/2609.34250v1",
+          "title": "WAM-OPD: Sharpening World Action Models via On-Policy Distillation",
+          "text": "WAM-OPD: Sharpening World Action Models via On-Policy Distillation\n\nPretrained world action models (WAMs) provide generalist capabilities across diverse robotic manipulation tasks, yet improving target-task performance to an expert level without degrading pretrained skills remains challenging. We explore on-policy distillation (OPD) for WAMs and introduce WAM-OPD. WAM-OPD inherits the advantage of"
         },
         {
-          "doc_id": "http://arxiv.org/abs/2610.16593v1",
-          "title": "Double-Rollout Reinforcement Learning with Sampling-based Reward Estimation",
-          "text": "Double-Rollout Reinforcement Learning with Sampling-based Reward Estimation\n\nReinforcement learning with verifiable rewards (RLVR) implemented with Group Relative Policy Optimization (GRPO) has driven substantial progress in training reasoning language models. However, verifiable outcome rewards provide an imperfect measure of reasoning quality: a correct final answer may not be supported by the r"
+          "doc_id": "http://arxiv.org/abs/2610.10447v1",
+          "title": "A Good Self-Teacher Meets the Student Where They Are: Joint On-Policy Learning and Teaching",
+          "text": "A Good Self-Teacher Meets the Student Where They Are: Joint On-Policy Learning and Teaching\n\nReinforcement Learning (RL) from outcome rewards suffers from sparse supervision, particularly on difficult, long-horizon tasks where successful trajectories are rare and costly to generate. On-Policy Distillation (OPD) offers an attractive alternative by providing dense token-level supervision from a stro"
         }
       ]
     },
     {
       "topic_id": 6,
-      "topic_name": "safety, language, attack, evaluation",
+      "topic_name": "detection, image, images, features",
       "top_terms": [
-        "safety",
-        "language",
-        "attack",
-        "evaluation",
-        "risk",
-        "attacks",
-        "prompt",
-        "llms"
+        "detection",
+        "image",
+        "images",
+        "features",
+        "accuracy",
+        "spatial",
+        "classification",
+        "evaluation"
       ],
-      "document_count": 478,
+      "document_count": 295,
       "review_examples": [
         {
-          "doc_id": "http://arxiv.org/abs/2610.38239v1",
-          "title": "The Indian Financial Automated Advice Bias (IFAAB) Dataset : Auditing Socioeconomic and Demographic Disparities in LLM-Generated Financial Advice in India",
-          "text": "The Indian Financial Automated Advice Bias (IFAAB) Dataset : Auditing Socioeconomic and Demographic Disparities in LLM-Generated Financial Advice in India\n\nLarge language models are increasingly used for financial guidance, yet little is known about whether their advice changes across social identities in Global South contexts. We introduce the Indian Financial Automated Advice Bias (IFAAB) benchm"
+          "doc_id": "http://arxiv.org/abs/2609.27317v1",
+          "title": "Breaking Weather-Content Coupling: Type-Severity Guided Progressive Disentanglement for All-in-One Infrared Restoration",
+          "text": "Breaking Weather-Content Coupling: Type-Severity Guided Progressive Disentanglement for All-in-One Infrared Restoration\n\nInfrared (IR) imaging is crucial for autonomous driving, remote sensing, and other perception tasks. However, adverse weather may introduce fake structural responses that are entangled with real thermal structures. Existing IR restoration methods are typically designed for a sin"
         },
         {
-          "doc_id": "http://arxiv.org/abs/2610.14360v1",
-          "title": "When Pleasing the User Compromises Care: AI Sycophancy in Caregiver-Mediated Healthcare",
-          "text": "When Pleasing the User Compromises Care: AI Sycophancy in Caregiver-Mediated Healthcare\n\nLarge language model (LLM) alignment often assumes that the user interacting with a model is also the primary beneficiary of its behavior. Yet in many consequential settings, one person directs the system while another bears the consequences. We study this problem in caregiver-mediated healthcare, where parent"
+          "doc_id": "http://arxiv.org/abs/2610.05919v1",
+          "title": "Non-invasive Seizure Detection Using Wearable Wrist-worn Accelerometry and Deep Learning",
+          "text": "Non-invasive Seizure Detection Using Wearable Wrist-worn Accelerometry and Deep Learning\n\nSeizure monitoring and detection are crucial for reducing the morbidity and mortality associated with seizures. Current epilepsy care, often involving expensive video-electroencephalography (VEEG) monitoring, requires specialized expertise and is limited to in-hospital settings, and intrusive in nature. Seizu"
         },
         {
-          "doc_id": "http://arxiv.org/abs/2610.24807v1",
-          "title": "Medical Fine-Tuning Reshapes, Not Reduces, Patient-Facing AI Risk: A Rubric-Based, LLM-Judge Evaluation Framework",
-          "text": "Medical Fine-Tuning Reshapes, Not Reduces, Patient-Facing AI Risk: A Rubric-Based, LLM-Judge Evaluation Framework\n\nPatient-facing medical question answering with large language models (LLMs) is moving from research demonstrations to production deployments, yet evaluation remains anchored on factual correctness. Factuality is necessary but not sufficient: a response can be factually grounded and st"
+          "doc_id": "http://arxiv.org/abs/2609.29235v1",
+          "title": "SARFusion: Scene-Aware Routing Fusion for Robust Camera-LiDAR 3D Object Detection",
+          "text": "SARFusion: Scene-Aware Routing Fusion for Robust Camera-LiDAR 3D Object Detection\n\nCamera-LiDAR fusion has become a prevailing paradigm for 3D object detection in autonomous driving. However, existing fusion detectors often establish strong inter-modality dependencies by decoding object queries from tightly coupled multimodal representations. Under corrupted driving conditions, such dependencies m"
         }
       ]
     },
     {
       "topic_id": 7,
-      "topic_name": "data, language, design, representations",
+      "topic_name": "training, data, neural, diffusion",
       "top_terms": [
-        "data",
-        "language",
-        "design",
-        "representations",
         "training",
+        "data",
+        "neural",
+        "diffusion",
         "inference",
-        "llms",
-        "large"
+        "latent",
+        "space",
+        "structure"
       ],
-      "document_count": 431,
+      "document_count": 835,
       "review_examples": [
         {
-          "doc_id": "http://arxiv.org/abs/2610.05305v1",
-          "title": "Characterizing Parallelism Strategies in LLM Inference: Fundamental Compute-Communication Trade-offs",
-          "text": "Characterizing Parallelism Strategies in LLM Inference: Fundamental Compute-Communication Trade-offs\n\nLarge Language Model (LLM) inference has become the dominant workload in modern AI systems, requiring serving infrastructures to maximize throughput while meeting strict latency Service-Level Objectives (SLOs). Since state-of-the-art LLMs exceed the compute and memory capacity of a single GPU, inf"
+          "doc_id": "http://arxiv.org/abs/2609.25179v1",
+          "title": "Multi-Term Fourier Graph Neural Network with Sample Relationship Learning for Enhanced Remaining Useful Life Prediction",
+          "text": "Multi-Term Fourier Graph Neural Network with Sample Relationship Learning for Enhanced Remaining Useful Life Prediction\n\nPredicting the remaining useful life (RUL) is essential for effective predictive maintenance. Spatio-Temporal Graph Neural Networks (ST-GNNs), which can model both temporal and spatial relationships by representing time series data as a sequence of graphs, have shown exceptional"
         },
         {
-          "doc_id": "http://arxiv.org/abs/2610.35282v1",
-          "title": "Satellite Intelligence: Distributed Training, Collaborative Inference,and LLM Adaptation in LEO Constellation",
-          "text": "Satellite Intelligence: Distributed Training, Collaborative Inference,and LLM Adaptation in LEO Constellation\n\nThe proliferation of orbital sensing data and the real-time demands of emerging global services are pushing low Earth orbit (LEO) satellite networks from bent-pipe relays toward intelligent onboard processing. This shift confronts a fundamental tension, where modern artificial intelligenc"
+          "doc_id": "http://arxiv.org/abs/2610.11738v1",
+          "title": "Scalable AI Uncertainty Quantification via Generalized Laplace Active Subspaces",
+          "text": "Scalable AI Uncertainty Quantification via Generalized Laplace Active Subspaces\n\nReliable uncertainty quantification (UQ) is essential for deploying neural networks in scientific and high-stakes applications, but full Bayesian inference over the network parameters is computationally infeasible. We propose a low-rank generalized Laplace approximation for neural-network UQ based on a small number of"
         },
         {
-          "doc_id": "http://arxiv.org/abs/2610.19405v1",
-          "title": "Scaling LLM Inference via Parallelism: Throughput-Latency Trade-off",
-          "text": "Scaling LLM Inference via Parallelism: Throughput-Latency Trade-off\n\nLarge Language Model (LLM) serving systems must balance latency and throughput while efficiently utilizing distributed GPU resources. This challenge arises because inference consists of two fundamentally different phases: prefill, which determines time-to-first-token (TTFT), and decode, which determines inter-token latency (ITL)."
+          "doc_id": "http://arxiv.org/abs/2609.29216v1",
+          "title": "FB-GDM: Fully-Bayesian Guided Diffusion Models for High-Dimensional Linear Inverse Problems via Unsupervised Variational Inference",
+          "text": "FB-GDM: Fully-Bayesian Guided Diffusion Models for High-Dimensional Linear Inverse Problems via Unsupervised Variational Inference\n\nDiffusion models are powerful priors for linear inverse problems, but the reference guidance methods, Diffusion Posterior Sampling (DPS) and Pseudoinverse-Guided Diffusion Models ($Π$GDM), rely on scalar hyperparameters tuned per task, usually against the ground truth"
         }
       ]
     }
@@ -299,19 +299,19 @@
   "fitted_topics": 8,
   "manual_review_note": "Review each topic's terms and examples. LDA topic labels are descriptive term lists, not verified semantic categories.",
   "sentiment_distribution": {
-    "negative": 1264,
-    "neutral": 76,
-    "positive": 4159
+    "negative": 1232,
+    "neutral": 87,
+    "positive": 4180
   },
   "topic_distribution": {
-    "0": 776,
-    "1": 453,
-    "2": 1378,
-    "3": 864,
-    "4": 519,
-    "5": 600,
-    "6": 478,
-    "7": 431
+    "0": 588,
+    "1": 257,
+    "2": 1126,
+    "3": 943,
+    "4": 739,
+    "5": 716,
+    "6": 295,
+    "7": 835
   },
   "sentiment_evaluation": {
     "dataset": "tests/fixtures/sentiment_labels.csv",
