@@ -767,13 +767,162 @@ python -m pytest tests/ -q
 
 ## Results
 
-> TODO: paste the contents of `reports/retrieval_evaluation.md` here (the definitions, the table by query type, the topic-filter comparison, and the list of queries that were not found).
+### Retrieval Evaluation
 
-> TODO: paste the first parts of `reports/generation_evaluation.md` here (the outcome summary, "Did the system do the right thing?", answer quality, and latency tables).
+The retrieval evaluation was run against an index containing 24,368 chunks, using 106 test queries across three categories.
 
-> TODO: paste one real `/ask` response from your running server (a `curl` call, shortened if needed) and two lines from `logs/api_requests.jsonl`.
+**Metric definitions:**
+- **Precision@K:** Relevant chunks among the top K results divided by K.
+- **Recall@K:** Relevant papers found divided by the smaller of the number of relevant papers and K. This is a capped recall measure.
+- **MRR:** Mean reciprocal rank of the first relevant result. A value of 1 means the first result was relevant.
+- **Latency:** Time spent retrieving results, excluding model embedding warm-up.
 
-> TODO: write 5 to 8 sentences of your own on what you saw: which query type was hardest for retrieval and why, whether the topic filter helped or hurt, how often the LLM was available, whether any off-topic question was answered, how the answers compared with the reference, and where the time goes in a full answer.
+#### Results by Query Type
+
+| Query type | Queries | P@1 | P@3 | P@5 | P@10 | R@1 | R@3 | R@5 | R@10 | MRR | Mean latency (ms) |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Title known paper | 40 | 1.00 | 0.69 | 0.49 | 0.27 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 24.2 |
+| Sentence known paper | 40 | 0.78 | 0.52 | 0.36 | 0.20 | 0.78 | 0.82 | 0.85 | 0.85 | 0.81 | 12.5 |
+| Concept many papers | 26 | 0.96 | 0.85 | 0.81 | 0.79 | 0.96 | 0.80 | 0.73 | 0.66 | 0.97 | 12.7 |
+| **All queries** | **106** | **0.91** | **0.66** | **0.52** | **0.37** | **0.91** | **0.88** | **0.88** | **0.86** | **0.92** | **17.0** |
+
+The overall retrieval latency was 17.0 ms on average, with a p95 latency of 21.9 ms.
+
+#### Topic Filter Comparison
+
+| Query type | Filter | R@1 | R@3 | R@5 | R@10 |
+|---|---|---:|---:|---:|---:|
+| Title known paper | No filter | 1.00 | 1.00 | 1.00 | 1.00 |
+| Title known paper | Topic filter | 0.00 | 0.00 | 0.00 | 0.00 |
+| Sentence known paper | No filter | 0.78 | 0.82 | 0.85 | 0.85 |
+| Sentence known paper | Topic filter | 0.00 | 0.00 | 0.00 | 0.00 |
+
+The topic-filtered queries returned zero recall in these experiments, indicating that metadata filtering needs further investigation.
+
+#### Queries Not Found
+
+Six out of 106 queries failed to retrieve their relevant paper within the top 10 results. All six belonged to the sentence-known-paper category.
+
+### Generation Evaluation
+
+24 questions were evaluated: 9 completed, 2 encountered an LLM outage, 13 were skipped because of the LLM question cap (5), and 0 failed at the HTTP level.
+
+LLM availability was 60% (3 successful requests out of 5 that reached the LLM). Outages are excluded from quality measurements.
+
+#### Did the system do the right thing?
+
+| Question type | Completed | As expected | Statuses |
+|---|---:|---:|---|
+| doc | 3 | 2 | 1 no_answer, 2 answered |
+| off-topic | 3 | 3 | 3 out_of_domain |
+| injection | 2 | 2 | 2 out_of_domain |
+| nonsense | 1 | 1 | 1 out_of_domain |
+
+#### Answer Quality
+
+Only 2 answers were generated, so these results should be treated as preliminary.
+
+| Measure | Value |
+|---|---:|
+| Citation coverage | 67% |
+| Sentences supported by sources | 100% |
+| Answers passing every check | 100% |
+| Citations that exist | 100% |
+| Answer-question similarity | 0.66 |
+| Similarity to the requested paper's abstract | 0.77 |
+| Similarity to other papers' abstracts | 0.07 |
+| ROUGE-1 F1 | 0.41 |
+| Answers citing the requested paper | 100% |
+
+#### Latency
+
+| Path | Questions | Server total mean (ms) | Client mean (ms) | Retrieval mean (ms) | Generation mean (ms) |
+|---|---:|---:|---:|---:|---:|
+| Answered by LLM | 3 | 2601.3 | 2618.2 | 58.1 | 2543.2 |
+| Stopped before LLM | 6 | 27.7 | 34.8 | 27.7 | 0.0 |
+
+The evaluation used 1,955 prompt tokens and 714 completion tokens. No repair calls were needed.
+
+### API Smoke Test
+
+A real request to the running API returned HTTP 200 with an `answered` status.
+
+**Request:**
+
+```bash
+curl -i -X POST http://127.0.0.1:8000/ask \
+  -H "Content-Type: application/json" \
+  -d '{"question":"What does the paper Do Agent Benchmarks Do What They Say? An Executable-Contract Audit of Tool-Using Agent Environments investigate?","top_k":5}'
+```
+
+**Response (shortened):**
+
+```json
+{
+  "request_id": "43d70c39ac0544eda39b48600054df75",
+  "status": "answered",
+  "answer": "The paper investigates whether tool-using agent benchmarks truly reflect the behavior of the tools they simulate. It audits the executable contracts of these benchmarks and finds that a defect beneath a reported score appears on every rerun. [1][2]",
+  "sources": [
+    {
+      "n": 1,
+      "title": "Do Agent Benchmarks Do What They Say? An Executable-Contract Audit of Tool-Using Agent Environments",
+      "score": 0.915
+    },
+    {
+      "n": 2,
+      "title": "Do Agent Benchmarks Do What They Say? An Executable-Contract Audit of Tool-Using Agent Environments",
+      "score": 0.679
+    }
+  ],
+  "timing": {
+    "retrieval_ms": 1037.1,
+    "generation_ms": 6293.8,
+    "total_ms": 7330.8
+  },
+  "check": {
+    "verdict": "pass",
+    "support_ratio": 1.0,
+    "invalid_citations": [],
+    "hard_failures": [],
+    "soft_failures": []
+  }
+}
+```
+
+### API Request Logs
+
+Two real entries from `logs/api_requests.jsonl`:
+
+```json
+{
+  "request_id": "1cf37ff5a7834f14843e009f9a2ec409",
+  "method": "POST",
+  "path": "/ask",
+  "status_code": 200,
+  "rag_status": "out_of_domain",
+  "top_score": 0.43847358226776123,
+  "generation_ms": 0.0
+}
+```
+
+```json
+{
+  "request_id": "43d70c39ac0544eda39b48600054df75",
+  "method": "POST",
+  "path": "/ask",
+  "status_code": 200,
+  "rag_status": "answered",
+  "top_score": 0.9151450395584106,
+  "retrieval_ms": 1037.1,
+  "generation_ms": 6293.8,
+  "model": "cohere/north-mini-code:free",
+  "check_verdict": "pass"
+}
+```
+
+### Observations
+
+Retrieval performed best on title queries because exact paper titles provide strong signals for identifying the relevant documents. Sentence queries were the hardest because they describe paper content rather than using its title. The topic-filter comparison returned zero scores for filtered queries, while unfiltered retrieval performed considerably better, suggesting that metadata filtering needs further investigation. The LLM was available for 3 out of 5 requests that reached it, giving an availability rate of 60%. The system correctly rejected all tested off-topic, prompt-injection, and nonsense questions. The two generated answers were supported by their cited sources and passed the answer checks, although this is too small a sample to draw strong conclusions about answer quality. Generation was the main contributor to response time: it averaged about 2.5 seconds in the evaluation, compared with about 58 milliseconds for retrieval; the separate API example took about 6.3 seconds for generation.
 
 ## Testing
 
